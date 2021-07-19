@@ -1,2 +1,2 @@
 # learning_notes
-Notes for learning AI &amp; ML related knowledges
+For Learning AI & ML related knowledges, mainly Focus on Deep Learning, Image & NLP  data
