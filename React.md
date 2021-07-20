@@ -4,6 +4,8 @@
 
 [React中的文件上传](https://segmentfault.com/a/1190000016824949)
 
+[从上传组件 引发的用React Hooks来实现的思考过程](https://juejin.cn/post/6844903957546926094)
+
 **Three methonds of file upload**:
 
 - form
@@ -14,10 +16,8 @@
 
   *Cons:*
 
-  by default, form will redirect.
-
 - fetch(or use axios)
   
-  *fetch* is browser's native API, it is better use native method 'fetch' when 'axios' is not necessary. But 'fetch' is based on *Promise*, so the browser has to support *Promise*.
+  it is better use native methon 'fetch' when 'axios' is not necessary
 
 - form + fetch
