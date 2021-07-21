@@ -4,8 +4,6 @@
 
 [React中的文件上传](https://segmentfault.com/a/1190000016824949)
 
-[从上传组件 引发的用React Hooks来实现的思考过程](https://juejin.cn/post/6844903957546926094)
-
 **Three methonds of file upload**:
 
 - form
@@ -21,3 +19,13 @@
   it is better use native methon 'fetch' when 'axios' is not necessary
 
 - form + fetch
+
+## Javascript Knowledge
+
+1. Promises Mode 
+
+[如何理解 JavaScript 的 Promises 模式？](https://www.zhihu.com/question/20761027)
+
+2. Axios 
+
+[Axios是什么？用在什么场景？如何使用？](https://zhuanlan.zhihu.com/p/69157371)
