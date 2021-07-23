@@ -2,9 +2,9 @@
 
 ## Week 1: Logistic Regression
 
-1. Supervised ML & Sentiment Analysis
+1. [**Supervised ML & Sentiment Analysis**](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/J9NR1/supervised-ml-sentiment-analysis)
 
-2. Vocabulary & Feature Extraction
+2. [**Vocabulary & Feature Extraction**](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/m7UdZ/vocabulary-feature-extraction)
 
 - **Vocabulary**: In this video, you're going to learn how to **represent a text as a vector**. In order for you to do so, you **first have to build a vocabulary** and that will allow you to **encode any text or any tweet as an array of numbers**.
 
@@ -26,7 +26,7 @@
 
   *freq*: dictionary mapping from *(word, class)* to  *frequency*.
 
-- **Feature Extraction with Frequencies**
+- [**Feature Extraction with Frequencies**](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/sfhGt/feature-extraction-with-frequencies)
   
   You previously learned to encode a tweet as a vector of dimension V. You will now learn to encode a tweet or specifically represented as a vector of dimension 3.
 
@@ -38,6 +38,9 @@
 
 	  **Feature 1**: a Bias unit equal to '1'
 
-	  **Feature 2**: The sum of the positive frequencies for every unique word on tweet m.
-
+	  **Feature 2**: The sum of the positive frequencies for every unique word on tweet m
 	  **Feature 3**: The sum of negative frequencies for  every  unique word on the tweet.
+
+- [**Preporcessing**]()
+
+  Two major concepts of preprocessing: **Stemming** & **Stop words** 

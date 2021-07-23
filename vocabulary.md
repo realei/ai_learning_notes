@@ -21,3 +21,5 @@ So to get started building a *logistic regression classifier* that's capable of 
 **vocabulary** 词汇
 
 **corpus** 语料库
+
+**Stemming**  词干化
