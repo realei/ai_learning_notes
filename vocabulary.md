@@ -23,3 +23,5 @@ So to get started building a *logistic regression classifier* that's capable of 
 **corpus** 语料库
 
 **Stemming**  词干化
+
+**punctuation marks** 标点符号

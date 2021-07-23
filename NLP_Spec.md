@@ -41,6 +41,28 @@
 	  **Feature 2**: The sum of the positive frequencies for every unique word on tweet m
 	  **Feature 3**: The sum of negative frequencies for  every  unique word on the tweet.
 
-- [**Preporcessing**]()
+- [**Preporcessing**](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/SLqys/preprocessing)
 
-  Two major concepts of preprocessing: **Stemming** & **Stop words** 
+  Two major concepts of preprocessing: **Stemming** & **Stop words**;
+
+  1. **Preprocessing: stop words and punctuation** 
+  
+  In practice, you would have to compare your tweet against two lists. One with **stop words in English** and another with **punctuation**.
+
+  **Note** that the overall meaning of the sentence could be inferred without any effort.
+
+  **Note** that in some contexts you won't have to eliminate punctuation, so you should think carefully about whether punctuation adds important information to your specific NLP task or not.
+
+  2. **Preprocessing: Handles and URLs**
+
+  Tweets and other types of texts often have **Handles** and **URLs**, but these don't add anyvalue for the task of sentiment analysis.
+
+  *Handles*: @YMourri; @AndrewYNg
+
+  *URLs*: https://deeplearning.ai
+
+  3. **Preprocessing: Stemming and lowercasing**
+
+  **Stemming** in NLP  is simply transforming  any  word to it's base stem, which you could define as the set of characters that are used to construct the word ant it's derivatives.
+
+
