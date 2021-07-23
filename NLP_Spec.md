@@ -27,6 +27,8 @@
   *freq*: dictionary mapping from *(word, class)* to  *frequency*.
 
 - **Feature Extraction with Frequencies**
+  
+  You previously learned to encode a tweet as a vector of dimension V. You will now learn to encode a tweet or specifically represented as a vector of dimension 3.
 
   1. Feature extraction
 
