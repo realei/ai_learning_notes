@@ -10,7 +10,7 @@
 
 - Sentiment Analysis (情感分析)
 
-And the **objective** in this task is to predict whether a tweeta has a positive or a negative **sentiment**.
+And the **objective** in this task is to predict whether a tweet has a positive or a negative **sentiment**.
 
 For this task you will be using your **logistic regression classifier** which assigns its observations to two **distinct** classes.
 
@@ -25,3 +25,7 @@ So to get started building a *logistic regression classifier* that's capable of 
 **Stemming**  词干化
 
 **punctuation marks** 标点符号
+
+## 
+
+**exclamation point** 感叹号
