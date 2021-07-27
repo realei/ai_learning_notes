@@ -60,8 +60,60 @@ Here we are going to use **React Router 5** today(V6 is coming  now actually).
 
 - **Class Components**
 
+  1. Import & Class Component Metods
+
   `import { Component } from 'react';`
 
   `import { withRouter } from 'react-router-dom';`
 
   **Class Components** have *lifecycle methonds* and they work relatively similar to function components in many ways. But they end up being having  some  slight variations from here to there. And This is like the **original way of writing React**, and **React with hook is a relatively recent thing**, it is only in the past two years(this year is 2021) probably that you've been able to do hooks with react.
+
+  1st should  always be  *render ()* method
+
+  **Function Component** vs **Class Component**
+  
+  The general React populist  likes *function components* and *hooks* and all that kind  of stuff.
+
+  2. How do we create **state**?
+
+  Instead of having *hooks* we  have  **individual pieces of state**. With *Class Components*, you actually have **a state object** that you're gonna refer to.
+
+  ```
+  class Details extends Component {
+    constructor () {
+      super();
+
+	  this.sate = { loading: true }
+    }
+	async componentDidMount () {
+      const res = await fetch(
+        `http://pets-v2.dev-apis.com/pets?id=${this.props.match.params.id}`
+      )
+    }
+	render() {
+	  return <h2>Hi! AI Search!<h2>
+	}
+  }
+  ```
+
+  **1st thing you need to do is call `super();`** inside a *class component constructor*. Because you actually have to call *Component constructor*.
+
+  3. **life cycle methods**:
+  
+  -**componentDidMount()**
+
+    `comopnentDidMount()` is the thing that get called as soon as the **React component is rendered for the first time**. So as soon as someone goes to `/details/1`, it's going to render this for the first time and then it's gonna call `componentDidMount()`. This is kind of like the **effect**......, **this is gonna get called once when it's first created and then it's not called again**.
+
+	`http://pets-v2.dev-apis.com/pets?id=${this.props.match.params.id}`
+
+	`this` refer to the detail component
+
+	`props` this  is what has been passed down from the parent
+
+	**`match.params`** is coming from **React Router**. `match` is the *matched path*, the *params* or the parameters that I am getting from the user, and the `id` is whatever I called inside the `<Route>`. 
+
+	```
+	<Route path="/details/:id">
+      <Details />
+    </Route>
+	```
