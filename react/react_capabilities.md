@@ -117,3 +117,7 @@ Here we are going to use **React Router 5** today(V6 is coming  now actually).
       <Details />
     </Route>
 	```
+
+  **Note:** If this is a *Function Component*, we can actually use a *special hook* that gets it(`http://pets-v2.dev-apis.com/pets?id=${this.props.match.params.id}`) for you.
+
+  **Note:** By default, *React Router* doesn't pass in all it's information the the `<Details>` component, and to solve this proble: wrap `Detail` with `()` export at the end `export default withRouter(Details);`. And this is just gonna now pass those props in. This is what again, called a **higher order component**.
