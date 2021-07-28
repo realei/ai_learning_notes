@@ -43,7 +43,9 @@ Here we are going to use **React Router 5** today(V6 is coming  now actually).
 
   `import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';`
 
-- **React Router Link Tag**
+## React Router Link Tag
+
+- Import
 
   `import { Link } from 'react-router-dom';`
 
@@ -58,9 +60,9 @@ Here we are going to use **React Router 5** today(V6 is coming  now actually).
   Whereas before  it would have reloaded the entire page, now if I click one of these links here, notice  that it doesn't like flash. **It is because it's not reloading  the page all together, React router is now capturing that routing event that navigation event and it's doing the navigation without reloading the application.**
 
 
-- **Class Components**
+## Class Components
 
-  1. Import & Class Component Metods
+- Import & Class Component Metods
 
   `import { Component } from 'react';`
 
@@ -74,7 +76,7 @@ Here we are going to use **React Router 5** today(V6 is coming  now actually).
   
   The general React populist  likes *function components* and *hooks* and all that kind  of stuff.
 
-  2. How do we create **state**?
+- How do we create **state**?
 
   Instead of having *hooks* we  have  **individual pieces of state**. With *Class Components*, you actually have **a state object** that you're gonna refer to.
 
@@ -98,7 +100,7 @@ Here we are going to use **React Router 5** today(V6 is coming  now actually).
 
   **1st thing you need to do is call `super();`** inside a *class component constructor*. Because you actually have to call *Component constructor*.
 
-  3. **life cycle methods**:
+- **life cycle methods**:
   
   -**componentDidMount()**
 
@@ -121,3 +123,5 @@ Here we are going to use **React Router 5** today(V6 is coming  now actually).
   **Note:** If this is a *Function Component*, we can actually use a *special hook* that gets it(`http://pets-v2.dev-apis.com/pets?id=${this.props.match.params.id}`) for you.
 
   **Note:** By default, *React Router* doesn't pass in all it's information the the `<Details>` component, and to solve this proble: wrap `Detail` with `()` export at the end `export default withRouter(Details);`. And this is just gonna now pass those props in. This is what again, called a **higher order component**.
+
+
