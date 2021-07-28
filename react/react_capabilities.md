@@ -192,3 +192,9 @@ Here we are going to use **React Router 5** today(V6 is coming  now actually).
   **this.state** is *mutable*, it's what you  use hooks for previously. And **mutable** is just a really fancy way of saying that this  is changeable.
 
   **this.props** is what's coming  from my parents, and it is one-way data flow & read-only; 'I' can not change props, only the parents can change props.
+
+## Interactive Class Component
+
+  We will add *event hanglers* here. 
+
+  `handleIndexClick(event)`
