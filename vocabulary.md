@@ -42,4 +42,4 @@ So to get started building a *logistic regression classifier* that's capable of 
 
 **cartesian plane** 笛卡尔平面
 
-
+Imagine you have *an extensive corpus of tweets* that can be categorized. 
