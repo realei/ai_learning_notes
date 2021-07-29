@@ -65,7 +65,7 @@
 
   **Stemming** in NLP  is simply transforming  any  word to it's base stem, which you could define as the set of characters that are used to construct the word ant it's derivatives.
 
-- **Putting it all together**
+- [**Putting it all together**](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/HjiGd/putting-it-all-together)
 
   **General Implementation:**
 
