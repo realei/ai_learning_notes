@@ -90,6 +90,8 @@
 
 - [**Logistic Regression Overview**](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/4GuN0/logistic-regression-overview)
 
-  
+  *Sigmoid Function*
 
-  
+- [**Logistic Regression: Training](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/AJSvB/logistic-regression-training)
+
+
