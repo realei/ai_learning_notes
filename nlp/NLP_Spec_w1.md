@@ -92,6 +92,9 @@
 
   *Sigmoid Function*
 
+
 - [**Logistic Regression: Training](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/AJSvB/logistic-regression-training)
 
+  *validation sets*
 
+- [**Logistic Regression: Testing**](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/AmwJi/logistic-regression-testing)
