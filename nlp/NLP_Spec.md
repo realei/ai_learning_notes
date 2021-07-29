@@ -88,4 +88,8 @@
 
   `X[i,:] = extract_features(p_tweet, freqs) #Extract Features`
 
+- [**Logistic Regression Overview**](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/4GuN0/logistic-regression-overview)
 
+  
+
+  
