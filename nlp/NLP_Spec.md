@@ -65,4 +65,27 @@
 
   **Stemming** in NLP  is simply transforming  any  word to it's base stem, which you could define as the set of characters that are used to construct the word ant it's derivatives.
 
+- **Putting it all together**
+
+  **General Implementation:**
+
+  1. First, build the *frequencies dictionary*:
+
+  `freqs = build_freqs(tweets, labels) #Build frequencies dictionary`
+
+  2. Then, initialize the matrix X to match your number of tweets
+
+  `X = np.zeros((m,3)) #Initialize matrix X`
+
+  3. After that, you'll want  to  go over through your sets of tweets carefully. Like, *deleting  stop words*, *steamming*, *deleting URLs & handles* and *lower casing.
+
+  ```
+  for i in range(m): #For every tweet
+  	p_tweet = process_tweet(tweets[i]) #Process tweet
+  ```
+
+  4. Finally, extract the features by **summing up** the **positive and negative frequencies** of the tweets.
+
+  `X[i,:] = extract_features(p_tweet, freqs) #Extract Features`
+
 
