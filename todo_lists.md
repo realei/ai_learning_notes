@@ -35,3 +35,5 @@
 
   3. scatter plot
     *raw counts* vs *logarithmic scale*
+
+ 4. *static methon* for javascript & python
