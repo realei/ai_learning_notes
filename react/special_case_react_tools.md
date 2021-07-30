@@ -26,4 +26,8 @@ What is React's *[Error Boundaries](https://zh-hans.reactjs.org/docs/error-bound
 
 ## Context
 
-So we are heading back to hooks, we spent a bunch of time on Class Components. Let's go back to use some hooks now. 
+  So we are heading back to hooks, we spent a bunch of time on Class Components. Let's go back to use some hooks now.
+
+  **Note:** "context" is a *sledgehammer(大锤)*, so dont use it all the time. You will *muddy浑 up* your code and make things less obvious which is the *React's big advantange  here is that the codes very obvious when you read it*.
+
+  
