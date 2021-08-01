@@ -98,8 +98,8 @@ What is React's *[Error Boundaries](https://zh-hans.reactjs.org/docs/error-bound
     </ThemeContext.Provider>
   );
 };
-  ```
 
+  ```
   What an I putting into `ThemeContext.Provider`, `theme`, what  is `theme`? `theme` is what returned  from `useState`. So it is  literally what's coming out `useState("darkblue")`; **But** lets say I had `const theme = 'green'` and replace the `seState("darkblue")`, it would be green! It's  basically you can think of context basically as like a *wormhole虫洞*, that just connects two different points in your application. Whatever you throw in one side, it's gonna come out the  other side, whatever you  put in is what you're gonna get out.
 
   **Q2:** When you actually invoke `useContext` in `searchParams.js`, what does that return?
@@ -107,4 +107,36 @@ What is React's *[Error Boundaries](https://zh-hans.reactjs.org/docs/error-bound
 
   **Q3:** Can you have multiple contexts?
   *Answer:* Absolutely, you can go in, let's just looks at `App.js`(check it in Q2). I could have multiple layers of context here. I could have one context that *encapsulates* a whole thing kind of like Redux. You actually already have some context  in your application, *because **react router** is using  context extensively广泛地*. That's  how  links  and stuff work, because it's all reading stuff of context.
+  
   **Q4:** Another thing you could know but you don't really need to: is **I can have multiple theme contexts**. So if I wrapped details on one of the `SearchParameters.js` in a different one, I could give one pink andone orange, and  it would read from those. *I have never use  that  in production, it  is a nifty party trick漂亮的派对把戏. But you can have multiple layers there, infinite layers I suppose. Yeah, **file that under never used**.*
+
+- Add a **Theme Selector**
+
+  Make a *dropdown* in `SearchParams.js`
+
+  ```
+  const [theme, setTheme] = useContext(ThemeContext)
+  			.
+			.
+			.
+  {/* make a drop down for "theme" */}V
+  <label htmlFor="theme">
+    Theme
+    <select
+	  value={theme}
+      onChange={e => setTheme(e.target.value)}
+  	  onBlur={e => setTheme(e.target.value)}
+	>
+	  <option value="darkblue">Dark Blue</option>
+	  <option value="peru">Peru</option>
+	  <option value="chartreuse">Chartreuse</option>
+	  <option value="mediumorchid">Medium Orchide</option>
+    </select>
+  </label>
+  <button style={{ backgroundColor: theme }}>Submit</button>
+  
+  ```
+
+  So now what we would except is I can change the theme. I'm gonna change the button, that's fine on the same page, I could have done that with `useState` **but** I am also gonna changethe color of the button on `Details` page. **Why is that?** Let's think about where that `state` actually lives. 
+
+  In `App.js`, the `theme` lives above `<Searchparams />`, so even when it  gets unrendered, it gets unrendered from `<Searchparams />`. This state ''theme` fro line `const theme = useState("darkblue")` never went away, so it still set to whatever it was set to here in `<Searchparams />`, **and it's doing that through context. Despite the fact that there is no explicit明确的 connection between `const theme = useState("darkblue")` and `<Searchparams />`, it's using  that *wormhole* of context to go from one place to another.
