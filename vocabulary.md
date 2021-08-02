@@ -42,4 +42,9 @@ So to get started building a *logistic regression classifier* that's capable of 
 
 **cartesian plane** 笛卡尔平面
 
+**numerator** 分子
+the number above the line in a common fraction showing how many of the parts indicated by the denominator are taken, for example, 2 in 2/3.
+
+**denominator* 分母
+
 Imagine you have *an extensive corpus of tweets* that can be categorized. 

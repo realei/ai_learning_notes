@@ -61,4 +61,45 @@ In order to derive *Bayes' Rule*, let's first take a look at the *conditional pr
 
 ## [Laplacian Smoothing 拉普拉斯平滑](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/IbV5W/laplacian-smoothing)
 
-  Laplacian Smoothing is a technique you can use to avoid your probabilities being zero.
+- Laplacian Smoothing is a technique you can use to avoid your probabilities being zero.
+
+  Smoothing the probability function means that you will use a slightly different formula from the original. Note that I've added a '1' in the numerator分子, this little transformation avoids the probability being zero. However, it adds a new term to all the frequencies that is not correctly normalized by N class. *To account for this 考虑到这一点*, you will add a new term in the denominator分子 'V'. This is the number of unique words in your vocabulary (i.e. the entire vocabulary and not just the unique words in a single class). So now all the probabilities in each column will sum to one. This process is called Laplacian Smoothing.
+
+- Summary
+
+  * Laplacian smoothing to avoid P(...) = 0
+
+  * Naive Bayes formula
+
+## [Log Likelihood 对数似然, Part 1](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/lNljj/log-likelihood-part-1)
+
+- Ratio of probabilities
+
+  Words can have many *shades 色调* of emotional meaning. **But for the purpose of sentiment classification, they are simplified into three categories:*neurtal*, *positive*, *negative*.** All can be identified by using their conditional probabilities. These *categories* can be numerically estimated just by dividing the corresponding conditional probabilities.
+
+  **Neutral** words have  already show  you one; **Positive** words have a ratio larger than one, the  larger the ratio the more positive the word's going to be; On the other hand, **negative** words has  a ratio smaller than one, the smaller the value the more negative the word.
+
+  **Naive Bayes' Inference 朴素贝叶斯推理**
+
+  These ratios are **essential** in *Naive Bayes' for binary classification*. 
+
+  Recall early where you used the formula to categorize a tweet as positive if the products of the corresponding ratios of every word appears in the tweet is bigger than one. And we said it was negative if it was less than one. this is called the **likelihood**. If you're to take a ratio between the positive and negative tweets `P(pos)/P(neg)`, you'd have what's called **prior ratio**. *When your'rebuilding your own application, remember that this term **prior ratio** becomes important for **unbalanced datasets**.* With the addition of the *prior ratio*, you now have the **full Naive Bayes' formjula** for binary classification:
+  
+  * A simple, fast, and powerful baseline
+
+  * A *probabilistic概率性的 model* used for classification
+
+- **Log Likelihood**
+
+  Now it's a good time to mention some other important considerations for your implementationa of *Naive Bayes'*. *Sentiments probability calculation* requires **multiplication** of many numbers with values between 0 and 1. Carring out such multiplications on the computer runs **the risk of numerical underflow数值下溢** when the number returned is so small it can't be stored on your device. **Luckily**, there is a mathematical trick to solve this. It involves using *a property of logarithms 对数的性质*. Recall that the formula you're using to calculate a score for *Naive Bayes'* is the prior multipled by the likelihood. The trick is to use a log of the score instead of the raw score. This allows you to  write the  previous expression as the sum of *log prior* and *log likelihood*. Which is a sum of the logarithms of consitional probability ratio of all unique words in your corpus.
+
+  Remember how you use the Naive Bayes' inference condition earlier to get the sentimentscore for your tweets. Now you're going to do something very similar to get the log or your score. What you'll need to calculate the log of score is called *Lambda*. This is the log of ratio of the probability that your word is positive and you divide that by ghe probability that the word is negative.
+
+- Summary
+
+  * Word sentiment 
+  	
+	1. `ratio(w)`
+	2. `lambda(w)`
+
+  Words are often *emotionally ambiguous 感情上模棱两可*, but you can simplify them into three categories and then measure exactly where they fall within those categories for binary classification. You do so by dividing the conditional probabilities of the words in each category. This ratio can be expressed as *a logrithm对数* as well, called *Lambda*. You canuse that to reduce the risk of numerical underflow.
