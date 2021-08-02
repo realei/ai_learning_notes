@@ -49,4 +49,16 @@ In order to derive *Bayes' Rule*, let's first take a look at the *conditional pr
 
 - **Naive Bayes for Sentiment Analysis**
 
-  *Naive Bayes* is an example of  supervised machine learning, and shares many similarities with *Logistic Regression* metnhod you used in the  previous assignment. It is called **naive** because **this method makes the assumption that the feature you're using for classification are all independent, which in reality  is rarely the case.**
+  *Naive Bayes* is an example of  supervised machine learning, and shares many similarities with *Logistic Regression* metnhod you used in the  previous assignment. It is called **naive** because **this method makes the assumption that the feature you're using for classification are all independent, which in reality is rarely the case.**
+
+  Say you get a new tweet from one of your friends, and tweet says "I'm happy today; I am learning." And you want to use the table of probablities to predict the sentiments of the whole tweet. This expression is called **The Naive Bayes Inference Condition Rule for Binary Classification**. This expression says that you're going to take the product across all the words in your tweets of the probability for each word in the positive class divided by the probability in the negative class.
+
+- **Summary**
+
+  * Naive Bayes inference condition rule for binary classification
+
+  * Table of probabilities
+
+## [Laplacian Smoothing 拉普拉斯平滑](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/IbV5W/laplacian-smoothing)
+
+  Laplacian Smoothing is a technique you can use to avoid your probabilities being zero.
