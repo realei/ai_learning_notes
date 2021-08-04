@@ -116,7 +116,7 @@ In order to derive *Bayes' Rule*, let's first take a look at the *conditional pr
 
   Well done! Now you can compute using log-likelihood. They make many things **simpler** and they also help with **numerical stability**.
 
-## Training Naive Bayes
+## [Training Naive Bayes](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/0imfM/training-naive-bayes)
 
 Train the Naive Bayes classifier, in this context we're trained in something different than in *logistic regression* or *deep learning*. **There is no gradient descent**, we're just counting frequencies of words in a corpus.
 
@@ -126,16 +126,36 @@ Train the Naive Bayes classifier, in this context we're trained in something dif
 
 You'll now be creating step by step, a Naive Bayes model for sentiment analysis using a corpus of tweets that you've already collected.
 
-  * Step 0: Collect and annotate corpus
+  * Step 0: Collect and annotate corpus(Get or annotate a dataset with positive and negative tweets)
 
   **The first step** for any supervised machine learning project is to gather the data to  train and test your model. For *sentiment analysis* of tweets, this step involves getting a corpus of tweets and dividing it into two groups, positive and negative tweets.
 
-  * Step 1: Preprocess
+  * Step 1: Preprocess(`process_tweet(tweet)->[w_{1}, w_{2}, w_{3}, ...]`)
 
   The next step is **fundamental** to your model success. **The preprocessing step** as describe in the previous module, consisits of five smaller steps:
     
 	1. Lowercase 
-	2. Remove punctuation, urls, names
+	2. Remove punctuation, urls, names(handles)
 	3. Remove stop words
-	4. Stemming
-	5. Tokenize sentences
+	4. Stemming(Reducing words to their common stem)
+	5. Tokenize sentences(Splitting your document into single  words or tokens)
+
+  * Step 2: Word count(computing the vocabulary for each word and class, `freq(w, class)`)
+
+  Once you have a clean corpus of process tweets, you'll start by computing hte vocabulary for each word and calss, like you did in the previous week. This process will produce a table like the on shown (in the Title's url). You can compute the sum of words and class in each corpus in this same step. 
+  
+  * Step 3: `P(w|class)`----Get `P(w|pos), P(w|neg)`
+
+  From *this table of frequencies*(Step 2), you get the *conditional probability or orobablity for a given class by using the Laplacian Smoothing Formula*. See how  the number of  unique words in `$V_{class}$` is equal to  6. **You only account for the word in the table, not the total number or words in the original corpus.** This produces **a table of conditional probabilities** for each word and each classis. This table only contains values greater than 0.
+
+  * Step 4: Get Lambda(Get`lambda(w)`)
+
+  For the 4th step, you'll get the Lambda score for each word, which is the `log` of the ratio of your conditional probabilities.
+
+  * Step 5: Get the "log priori"(compute `logprior=log(P(pos)/P(neg))`)
+
+  The 5th step is the estimation of the log prior. To do this, you'll need to count the numbers of positive and negative tweets. And the log prior is the log of the ratio of the numbers of positive over the number of negative tweets`$log = log(D_{pos}/D_{neg})$`. **If the dataset is balanced, `$D_{pos}$` = `$D_{neg}` and `logprior = 0`.** But for unbalanced data sets, this term will be important.
+
+- Summary 
+
+In summary, training a Naive Bayes model can be divided into six logical steps.
