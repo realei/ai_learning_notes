@@ -59,6 +59,8 @@ In order to derive *Bayes' Rule*, let's first take a look at the *conditional pr
 
   * Table of probabilities
 
+  **Compute the Likelihood Score**
+
 ## [Laplacian Smoothing 拉普拉斯平滑](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/IbV5W/laplacian-smoothing)
 
 - Laplacian Smoothing is a technique you can use to avoid your probabilities being zero.
@@ -83,7 +85,7 @@ In order to derive *Bayes' Rule*, let's first take a look at the *conditional pr
 
   These ratios are **essential** in *Naive Bayes' for binary classification*. 
 
-  Recall early where you used the formula to categorize a tweet as positive if the products of the corresponding ratios of every word appears in the tweet is bigger than one. And we said it was negative if it was less than one. this is called the **likelihood**. If you're to take a ratio between the positive and negative tweets `P(pos)/P(neg)`, you'd have what's called **prior ratio**. *When your'rebuilding your own application, remember that this term **prior ratio** becomes important for **unbalanced datasets**.* With the addition of the *prior ratio*, you now have the **full Naive Bayes' formjula** for binary classification:
+  Recall early where you used the formula to categorize a tweet as positive if the products of the corresponding ratios of every word appears in the tweet is bigger than one. And we said it was negative if it was less than one. this is called the **likelihood**. If you're to take a ratio between the positive and negative tweets `P(pos)/P(neg)`, you'd have what's called **prior ratio 先验比率**. *When your'rebuilding your own application, remember that this term **prior ratio** becomes important for **unbalanced datasets**.* With the addition of the *prior ratio*, you now have the **full Naive Bayes' formjula** for binary classification:
   
   * A simple, fast, and powerful baseline
 
@@ -103,3 +105,37 @@ In order to derive *Bayes' Rule*, let's first take a look at the *conditional pr
 	2. `lambda(w)`
 
   Words are often *emotionally ambiguous 感情上模棱两可*, but you can simplify them into three categories and then measure exactly where they fall within those categories for binary classification. You do so by dividing the conditional probabilities of the words in each category. This ratio can be expressed as *a logrithm对数* as well, called *Lambda*. You canuse that to reduce the risk of numerical underflow.
+
+ ## [Log Likelihood 对数似然, Part 2](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/oYXpy/log-likelihood-part-2)
+
+  Remember how previously you saw that the tweet was positive if the product was bigger than 1. **With the `log(1)=0`** the positive values indicate that the tweet is positive, a value less than 0 would indicate that the tweet is negative. The **log-likelihood** for this tweet is 3.3, since `3.3 > 0` the tweet is positive. **Notice** that this score is based entirely on the words "happy" and ""earning", both of which carry a *positive* sentiments; all the other words were *neutral* and  didn't contribute to the score. See how much influence the power words have.
+
+- Summary:
+
+  You used your new skills to predict the sentiment of a tweet by summing all the `Lambdas` for each word that's appeared in the tweets. **This score is called the log-likelihood**. For the log-likihood the **decision threshold** is 0 instead of 1, positive tweets will have a positive log-likelihood above 0, and negative tweets will have a negative log-likelihood below 0.
+
+  Well done! Now you can compute using log-likelihood. They make many things **simpler** and they also help with **numerical stability**.
+
+## Training Naive Bayes
+
+Train the Naive Bayes classifier, in this context we're trained in something different than in *logistic regression* or *deep learning*. **There is no gradient descent**, we're just counting frequencies of words in a corpus.
+
+### **Outline**
+
+- Five steps for training a Naive Bayes model
+
+You'll now be creating step by step, a Naive Bayes model for sentiment analysis using a corpus of tweets that you've already collected.
+
+  * Step 0: Collect and annotate corpus
+
+  **The first step** for any supervised machine learning project is to gather the data to  train and test your model. For *sentiment analysis* of tweets, this step involves getting a corpus of tweets and dividing it into two groups, positive and negative tweets.
+
+  * Step 1: Preprocess
+
+  The next step is **fundamental** to your model success. **The preprocessing step** as describe in the previous module, consisits of five smaller steps:
+    
+	1. Lowercase 
+	2. Remove punctuation, urls, names
+	3. Remove stop words
+	4. Stemming
+	5. Tokenize sentences
