@@ -43,7 +43,7 @@ In order to derive *Bayes' Rule*, let's first take a look at the *conditional pr
 
   The main **takeaway** for now is that **Bayes' rule is based on the mathematical formulation of conditional probabilities.** And that with Bayes' rule, you can calculate the probability of X given Y `P(X|Y)`, if you already know the probabilituy of Y given X `P(Y|X)`, and the ratio fo provabilities of X and Y `P(X)/P(Y)`.
 
-## [Native Bayes Introduction 朴素贝叶斯介绍](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/boKAa/naive-bayes-introduction)
+## [Naive Bayes Introduction 朴素贝叶斯介绍](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/boKAa/naive-bayes-introduction)
 
   Last week you learned how  to classify tweets using *Logistic Regression*. This week we will solve the same problem using  a method called the **Naive Bayes**. It's a very good, quick, and dirty baseline for many text classification tasks, and the concepts you learned will be use later throughout the specialization.
 

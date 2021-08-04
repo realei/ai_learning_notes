@@ -55,7 +55,7 @@
 
   2. **Preprocessing: Handles and URLs**
 
-  Tweets and other types of texts often have **Handles** and **URLs**, but these don't add anyvalue for the task of sentiment analysis.
+  Tweets and other types of texts often have **Handles** and **URLs**, but these don't add any value for the task of sentiment analysis.
 
   *Handles*: @YMourri; @AndrewYNg
 
