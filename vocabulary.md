@@ -47,4 +47,8 @@ the number above the line in a common fraction showing how many of the parts ind
 
 **denominator* 分母
 
-Imagine you have *an extensive corpus of tweets* that can be categorized. 
+Imagine you have *an extensive corpus of tweets* that can be categorized.
+
+## Phrases
+
+1. data visualization gives insight into the expected performance of any model.

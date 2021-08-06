@@ -159,3 +159,14 @@ You'll now be creating step by step, a Naive Bayes model for sentiment analysis 
 - Summary 
 
 In summary, training a Naive Bayes model can be divided into six logical steps.
+
+
+## Test Naive Bayes
+
+### Outline 
+
+- Predict using a Naive Bayes Model
+
+- Using your validation set to compute model accuracy
+
+Once you have trained your model, the next step is to test it. And you do so by taking the *conditional probabilities* you just derived and you use them to predict the sentiments of new unseen tweets. After that, you evaluate your model performance and you will do so just like how you did  in the last week. You use your test sets of annotated tweets. With the calculations you've done  already, you have a table  with *lambda score* for each unique word in your vocabulary. With your estimation of the **log prior**, you can predict sentiments  on a new tweet. This new tweet says, "I passed the NLP interview.", you can use your model to predict if this is a positive or negative tweet. So before anything else, you must pre-processed this text removing the punctuation, stemming the words, and tokenizing to produce a vector of words like this one `Tweet: [I, pass, the, NLP, interview]`; Now you look up each word from **the vector in your log-likelihood table**. If the word is found, such as `I pass the NLP`, you *sum over* all the corresponding `lambda terms`. The value that don't show up in the *table of lambdas*, like `interview`, are condiser **neutral** and don't contribute anything to this score. **Your model can only give a score for  words it's seen before.** Now you **add the log prior** to *account for the balance or in-balance of  the classes in the dataset.* So this course sums up to  0.48, remember, if this score is bigger than 0, then the tweet has a positive sentiment. So yes, in your model and  in real life, `passing the NLP interview` is a very positive thing. You just predicted the sentiment of a new tweet and that's awesome. 
