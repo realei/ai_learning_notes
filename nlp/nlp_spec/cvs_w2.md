@@ -256,3 +256,65 @@ Naive Bayes assumes that the words in a piece of text are independent of one ano
 - Relative frequency of classes affect the model
 
 The assumption of independence in Naive Bayes is very difficult to guarantee, but despite that, the model works pretty well in certainsitutations. And for the assignment of this module, the relative frequency of positive and negative tweets in your training datasets needs to be balanced in order to deliver an accurate results.
+
+## [Error Analysis](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/clcHR/error-analysis)
+
+No matter what NLP method you use, you will one day find yourself faced with an error, for example, a misclassified  sentence. In this video, I'll show you how to analyze such errors.
+
+### Outline
+
+- Removing punctuation and stop words
+
+- Word order
+
+- Adversarial attacks 对抗性攻击
+
+Let us consider some possible errors in the model prediction that can be caused by these issues:
+
+* One, semantic meaning lost in the pre-processing step.
+* Two, how word order affects the meaning of a sentence.
+* And three, some *quirks 怪癖* of languages come naturally to humans but confuse Naive Bayes Models.
+
+### Processing  as a Source of Errors: `Punctuation`
+
+Tweet: `My beloved grandmother:(`
+
+One of your main considerations when analyzing errors in NLP systems is what the processed version of the text actually looks like. Let's look at above tweet. "My beloved grandmother" with some punctuation `:(` indicating a sad face. The sad face punctuation in this case is very important to the sentiment to the tweet because it tells you what's happening. But if you removing punctuation, then the processed tweet will leave hehind only `beloved  grandmother`, which looks like a very positive tweet. 'My beloved grandmother', exclamation mark would be a very different sentiment. So remember, **always check what the actual text looks like**.
+
+### Processing as a Source of Errors: `Removing Words`
+
+It's not just about punctuation either. Check out this tweet:
+
+Tweet: `This is not good, because your attitude is not even close to being nice.`
+
+If you remove netural words like `not` and `this`, what  you're left with is following:
+
+**Processed_tweet:**[good, attitude, close, nice]
+
+From this set of words, any classifier will infer that this is something very positive. I'll talk later on about handling `nots` and  `word orders`. But remember, **double check what your process text looks like to make sure your model will be able to  get an accurate read**.
+
+### Processing  as a Source of Errors: `Word Order`
+
+This inputs pipeline isn't the only potential source of trouble. Look at these tweets:
+
+Tweet: `I am happy because I did not go.`   ---   A purely positive tweet.
+
+Tweet: `I am not happy because I did go.`   ---   A negative sentiment.
+
+In this case, **the `not` is important to the sentiment but get missed by your Naive Bayes classifier.** So word order can be as important to  spelling. There are many other factors to consider as well, and you will see more and  more ways to build  system that handle them in the weeks to come.
+
+### Adversarial attacks 对抗性攻击
+
+The term "adversarial attack" describes some **common language phenomenon 共同语言现象**, like:
+
+`Sarcasm, Irony and Euphemisms` (讽刺、讽刺和委婉语)
+
+Humans pick these up quickly but machines are terrible at it. This tweet:
+
+**Tweet:** `This is a ridiculously powerful movie. The plot was gripping and I cried right through until the ending!`  ~~~ "这是一部可笑的强大的电影。 情节扣人心弦，我哭到最后."
+
+contains a somewhat positive movie review, but pre-processing might suggest otherwise. If you pre-process this tweet, you'll get a list of mostly negative words:
+
+**processed_tweet:** [ridicul, power, movi, plot, grip, cry, end]
+
+but as you can see, they were actually used to describe a movie that the author enjoyed. If you use Naive Bayes on this list of words, it would end up giving  a very negative score regardless.
