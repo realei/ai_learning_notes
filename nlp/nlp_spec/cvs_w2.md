@@ -229,4 +229,30 @@ When you use Naive Bayes to predict the sentiments of a tweet, what you're actua
 
   **Simple, fast and robust!**
 
-  ## Naive Bayes Assumptions
+## [Naive Bayes Assumptions](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/xoi1w/naive-bayes-assumptions)
+
+  This week, I'll go into the **assumptions underlyhing the Naive Bayes metho**. **The main one is independence of words in a sentence** and I'll tell you why this can be **a big problem** when the method is applied.
+
+### Outline 
+
+- Indenpendence 
+
+- Relative frequency in corpus
+
+Naive Bayes is a very simple model bacause it doesn't require setting any custom parameters. This method is referred to as naive because of the assumptions it makes about the data. **The first assumtpion is independence between the predictors or features associated with each class** and **the second has to  do with your validation sets**. Let's explore each of these assumptions and  how they could affect your results. 
+
+To illustrate towards independence between features looks like, let's looks at the following  sentence:
+
+`It is sunny and hot in the Sahara desert.`
+
+Naive Bayes assumes that the words in a piece of text are independent of one another, but as you can see, this typically isn't the case. *The word `summy` and `hot` often appear together as they do in this example.* Taken together, they might also be related to the thing they're describing like a beach or a desert. So the words in a sentence are not always necessarily indepenent of one another, but Naive Bayes assumes that they are. **This could lead you to under or over estimates the conditional probabilities of individual words.** When using Naive Bayes, for example, if your task was to complete the sentence, `it always cold and snowy in__`, Naive Bayes might assign equal probability to the words `spring, summer, fall and winter` even though from the context you can see that winter should be the most likely candidate.
+
+**Another issue with Naive Bayes is that it relies on the distribution of the training datasets.** A good dataset will contain the same proportion of positive and negative tweets as a random sample would. However, most of the available annotated *corpora 语料库* are artificially balanced just  like  the dataset you'll use for the assignment. In the real tweet stream, positive  tweet is sent to  occur more often than their negative counterparts. One reason for this is that negative tweets might contain coutent that is banned by the platform or muted by the user such as  inappropriate or offensive vocabulary. Assuming that reality behaves as your training corpus, this could  result in a very optimistic or very pressimistic model. There's a lot more on this in the last video of this module, which analyzes the sources of errors in Naive Bayes.
+
+### Summary
+
+- Independence: Not true in NLP
+
+- Relative frequency of classes affect the model
+
+The assumption of independence in Naive Bayes is very difficult to guarantee, but despite that, the model works pretty well in certainsitutations. And for the assignment of this module, the relative frequency of positive and negative tweets in your training datasets needs to be balanced in order to deliver an accurate results.
