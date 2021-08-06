@@ -191,7 +191,7 @@ It's time to **test the peformance of your classifier on unseen data,** just lik
 
 * What about words that do not appear in `Lambda(w)`?
 
-## Applications of Naive Bayes
+## [Applications of Naive Bayes](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/aQTbY/applications-of-naive-bayes)
 
 Earlier in the week, you used Naive Bayes method to classify tweets. But that can be used to do a number of other things like **identify who's an author of a text**. I will give  you a few ideas of what those things may be.
 
@@ -201,4 +201,32 @@ Earlier in the week, you used Naive Bayes method to classify tweets. But that ca
 
   `P(neg|tweet) ~~ P(neg)P(tweet|neg)`
 
-When you use Naive Bayes to predict the sentiments of a tweet, what you're actually doing is **estimating the probability for each class** by using **the joint probability 联合概率 of the words in classes**. The Naive Bayes formula is the ratio between these two probablities, the products of the priors and the likehoods`P(pos|tweet)/P(neg|tweet) = (P(pos)/P(neg)*"likelihood")`.
+When you use Naive Bayes to predict the sentiments of a tweet, what you're actually doing is **estimating the probability for each class** by using **the joint probability 联合概率 of the words in classes**. The Naive Bayes formula is the ratio between these two probablities, the products of the priors and the likehoods`P(pos|tweet)/P(neg|tweet) = (P(pos)/P(neg)*"likelihood")`. You can use this ratio between conditional probabilities for much more than sentiment analysis.
+
+- Applications:
+
+  * Sentiment Anaysis
+
+  * Author Identification
+
+  If you have large *corporal 文集*, each written by different authors, you can  train the model to reconize whether a new document  was written by one or the other. Or if you had some works by *Shakespeare 莎士比亚* and some works by *Hemingway 海明威*, you could calculate the `Lambda` for each word to predict how likely a new word is to be used by Shakespeare or alternatively by Hemingway. This method also allows you to determine author identity.
+
+  * Spam Filtering
+
+  Using information taken from the sender, subject and content, you could decide whether an email is spam or not.
+
+  * Information retrieval 信息检索
+
+    - $P(document_{k}|query)  \infty  \prod_{i=0}^{|query|} P(query_{i}|document_{k})$
+
+    - Retrieve document if `P(document_{k}|query) > threshold`
+
+  One of the earliest uses of Naive Bayes was filtering between relevant and irrelevant documents in a database. Given the sets of keywords in a query, in this case, you only need to calculate the likelihood of the documents given the query. You can't know *beforehand 预先* what's irrelevant or a relevant document looks like. So you can compute the likelihood for each document in your dataset and then store the documents based on its likelihoods. You can choose to keep the first M results or the ones that have a likelihood larger than a certain threshold.
+
+  * Word Disambiguation 词消歧
+
+  Finally, you can also use Naive Bayes for word dis-ambiguation, which is  to  say, breaking dwon words for  contextual clarity. Consider you have only  two possible *interpretations 解释* of a given word within a text. Let's say you don't know if the word `bank` in your reading is referring to the bank of a river or to a financial institution. To disambiguate your word, calculate the score of the document, given that refers to each one of the  possible meanings. In this case, if the text refers to the concept of the river instead of the concept of money, then the score will be bigger than 1. `Bank: P(river|text)/P(money|text)`
+
+  **Simple, fast and robust!**
+
+  ## Naive Bayes Assumptions
