@@ -190,3 +190,15 @@ It's time to **test the peformance of your classifier on unseen data,** just lik
 * Accuracy ------> `$(1/m)*sum_{i=1}^{m (pred_{i} == Y_{val_{i}})}$`
 
 * What about words that do not appear in `Lambda(w)`?
+
+## Applications of Naive Bayes
+
+Earlier in the week, you used Naive Bayes method to classify tweets. But that can be used to do a number of other things like **identify who's an author of a text**. I will give  you a few ideas of what those things may be.
+
+### Application of Naive Bayes
+
+  `P(pos|tweet) ~~ P(pos)P(tweet|pos)`
+
+  `P(neg|tweet) ~~ P(neg)P(tweet|neg)`
+
+When you use Naive Bayes to predict the sentiments of a tweet, what you're actually doing is **estimating the probability for each class** by using **the joint probability 联合概率 of the words in classes**. The Naive Bayes formula is the ratio between these two probablities, the products of the priors and the likehoods`P(pos|tweet)/P(neg|tweet) = (P(pos)/P(neg)*"likelihood")`.
