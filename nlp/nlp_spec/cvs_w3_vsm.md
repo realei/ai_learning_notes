@@ -51,3 +51,26 @@ As a final thoughts, I'd  like to share with you this  wujto from John Firth, a 
 * Represent words and documents as **vectors**
 
 * Representation that **captures** relative **meaning**
+
+## Word by Word and Word by Doc
+
+In this video, you will learn **how you can construct your vectors based off a co-occurrence matrix**. Specifically, depending on the task you're trying to solve, you can have several possible designs. You will also see  **how you can encode a word or a document as a vector.** Let me show you how you can do this.
+
+### Outline
+
+* `Co-occurrence`  ------>  `Vector representation`
+
+* Relationships between words/documents
+
+To get **a vector space model** using a word by word design, you'll make a **co-occurrence matrix** and **extract vector presentations** for the words in your corpus. You'll be able to get **a vector space model** using a word by *document design* using  a similar approach. Finally, I'll show you how in a vector space you can find relationships between words and vectors, also known as their similarity.
+
+### Word by Word Design
+
+* *Number of times they* occur together withnin a certain distance **k**
+
+The co-occurrence of two different words is the number of times that appear in your corpus together within a certain word distance k. For instance, suppose that your corpus has the following two sentences:
+
+* `I like simple data`
+* `I prefer simple raw data`
+
+The **raw** of the co-occurrence matrix corresponding to the word **`data`**, with a **k** value equal to 2 would be populated with the following values. For the **column** corresponding to the word **`simple`**, you'd get a value equal to 2. Because `data` and `simple` co-occur in the first sentence within a distance of one word, and in the  second sentence within a distance of two words. The **row** of the **co-occurrence matrix** corresponding to the word data would look like this if you consider the co-occurence with the words `simple`, `raw`, `like`, and `I`. In this case, the vector representation of of the word data would be equal to `2`, `1`, `1`, `0`. With a **word by word design**, you can get a representation with **n entries** with `n` between 1 and *the size of  your entire vocabulary**.
