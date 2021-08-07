@@ -52,7 +52,7 @@ As a final thoughts, I'd  like to share with you this  wujto from John Firth, a 
 
 * Representation that **captures** relative **meaning**
 
-## Word by Word and Word by Doc
+## [Word by Word and Word by Doc](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/XAYg4/word-by-word-and-word-by-doc)
 
 In this video, you will learn **how you can construct your vectors based off a co-occurrence matrix**. Specifically, depending on the task you're trying to solve, you can have several possible designs. You will also see  **how you can encode a word or a document as a vector.** Let me show you how you can do this.
 
@@ -66,11 +66,26 @@ To get **a vector space model** using a word by word design, you'll make a **co-
 
 ### Word by Word Design
 
-* *Number of times they* occur together withnin a certain distance **k**
+* **Number of times they** occur together withnin a certain distance **k**
 
 The co-occurrence of two different words is the number of times that appear in your corpus together within a certain word distance k. For instance, suppose that your corpus has the following two sentences:
 
 * `I like simple data`
 * `I prefer simple raw data`
 
-The **raw** of the co-occurrence matrix corresponding to the word **`data`**, with a **k** value equal to 2 would be populated with the following values. For the **column** corresponding to the word **`simple`**, you'd get a value equal to 2. Because `data` and `simple` co-occur in the first sentence within a distance of one word, and in the  second sentence within a distance of two words. The **row** of the **co-occurrence matrix** corresponding to the word data would look like this if you consider the co-occurence with the words `simple`, `raw`, `like`, and `I`. In this case, the vector representation of of the word data would be equal to `2`, `1`, `1`, `0`. With a **word by word design**, you can get a representation with **n entries** with `n` between 1 and *the size of  your entire vocabulary**.
+The **raw** of the co-occurrence matrix corresponding to the word **`data`**, with a **k** value equal to 2 would be populated with the following values. For the **column** corresponding to the word **`simple`**, you'd get a value equal to 2. Because `data` and `simple` co-occur in the first sentence within a distance of one word, and in the  second sentence within a distance of two words. The **row** of the **co-occurrence matrix** corresponding to the word data would look like this if you consider the co-occurence with the words `simple`, `raw`, `like`, and `I`. In this case, the vector representation of of the word data would be equal to `2`, `1`, `1`, `0`. With a **word by word design**, you can get a representation with **n entries** with `n` between 1 and *the size of  your entire vocabulary*.
+
+### Word by Document Design
+
+* **Number of times a word** occurs within a certain category
+
+For a word by document design, the process is quite similar. In this case, you'll count the times that words from your vocabulary appear in documents that belong to specific categories. For instance, you could have a corpus consisting of a documents between different topics like `Enertainment`, `Economy` and `Machine Learning`. Here, you have to count the number of times that your words appear on the document that belong to each of the three categories. In this example, suppose that the word `data` appears 500 time in documents from your corpus related to `Entertainment`, 6620 times in `Economy` documents, and 9320 in documents related to `Machine Learning`. The word `film` appears in each documents category 7000, 4000 and 1000. Can you get a sense of where this is going already?
+### Vector Space
+
+Once you've constructed the representations for multiple sets of documents or words, you will get your **vector space**. Let's take the matrix from the last example(Word by Document Design). Here, you could take a representation for the words `data` and `film` from the rows of the table. However, I'll take the representation for every category of documents by looking at the columns. So the vector space will have two dimmensions. The number of times that the words `data` and `film` appear on the type of document. For the `Entertainment` corpus, you'd have the following vector representation. This one for the `Economy` category, and that for the `Machine Learning` category. **NOTE**, that in this space, it is easy to see that the `Ecomany` and `Machine Learning` documents are much more similar than they are to the `Entertainment` category. Coming up soon, you'll make comparisons between vector representations using the **cosine similarity** and the **Euclidean distance** in order to get the **angle and distance** between them.
+
+### Summary
+
+* W/W and W/D, counts of occurrence
+
+* Vector Spaces  ------>   Similarity between words/documents
