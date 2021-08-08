@@ -89,3 +89,68 @@ Once you've constructed the representations for multiple sets of documents or wo
 * W/W and W/D, counts of occurrence
 
 * Vector Spaces  ------>   Similarity between words/documents
+
+## [Euclidean Distance](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/uqakE/euclidian-distance)
+
+Euclidean Distance is a **similarity metric**. This metric allows you to identify how far two points or two vectors are apart from each other.
+
+### Outline
+
+- Euclidean distance
+
+- N-dimension vector representations comparison
+
+During this segment, you will get the **Euclidean distance between two documents vectors** like the ones from previous video. *And then generalize that **notion概念主张** to vector spaces in higher himensions.*
+
+### Euclidean  distance
+
+Let's use two of the corpora vectors you saw previously. Remember, in that's example, there were two dimensions. The number of times that the word `data` and the word `film` appeared in the Corpus. 
+
+* Corpus **A**: (500, 700)  ~~~ Entertainment Corpus
+* Corpus **B**: (93200, 1000) ~~ ML Corpus
+
+Now let's represent those vectors as points in the vector space. The Euclidean distance is the length of the *straight line segment直线段* connecting them. To get that value, you should  use  the following formula(please refer tothe url). The first term is **their horizontal distance squared** and the second term is **their vertical distance squared**. As you see, this  fornula is an example of the **Pythagorean theorem勾股定理**. If you solve for each of the terms in the equation, you should arrive at this expression(refer to the url).
+
+### **Euclidean distance for n-dimensional vectors**
+
+When you have higher dimensions, the Euclidean distance is not much more difficult. Let's walk through an example  using the following co-occurence matrix(refer to the url). Suppose that you want to know Euclidean distance between the `vector v` of the word `ice cream` and  the `vector representation w` of  the  word `boba`. To start, you need to get the difference between each of their dimensions, square those differences, sum them up  and then get the  queare root  of your results. This process is the generalization of the one from the last slide. This is the formula that you would use to get the Euclidean distance between vector representations on an n-dimensional vector space. If you remember from algebra, this formula is known as the **norm范数** of the difference between the vectors that  your are comparing.
+
+### Euclidean distance in Python
+
+```
+# Create numpy vectors v and  w
+v = np.array([1, 6, 8])
+w = np.array([0, 4, 6])
+
+# Calculate the Euclidean distance d
+d = np.linalg.norm(v-w)
+
+# Pring the result
+print("The Euclidean distance between v and w is:", d)
+```
+
+### Summary
+
+* Straight line between points
+
+* Norm of the difference between vectors
+
+**The primary takeaways** here are that the Euclidean distance is basically the length of the straight  line  that's connects two vectors. And that to get the Euclidean distance, you have to calculate the `norm` of the difference  between the vectors that you are comparing. By using this metric, you can get a sense of how similar two documents or words are.
+
+## [Cosine Similarity Intution](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/xW4vy/cosine-similarity-intuition)
+
+Cosine Similarity is basically makes uses of the **cosine of the angle between two vectors**. And based off that, it tells you whether two vectors are close or not.
+
+### Outline
+
+* Problemswith Euclidean Distance
+
+* Cosine similarity
+
+In this section, you will see the problem of using Euclidean distance. Especially when comparing vector representations of documents or corpora. And how the **Cosine Similarity metric** could help you overcome that problem.
+
+### Euclidean distance  vs Cosine similarity
+
+(Please refer to the url for chart)
+
+To illustrate how the euclidean distance might be *problematic有问题的*, let's take the following  example. Suppose you are in a vector space where the corpora are represented by the occurence of the words `disease` and `eggs`. Here is the representation of a `Food dorpus (5, 15)` and `Agriculture corpus(20, 40)` and the `History corpus (30, 20)`. Each one of these corpora have text related to that subject. But you know that the *word totals单字总数* in the corpora differ from one another. In fact, the agriculture and the history corpus have a siilar numbers of words, while the Food corpus has a relatively small number. Let's define the Euclidean distance between the `Food` and the `Algriculture` corpus as `d1`. And let the Euclidean distance between the `Agrigulture` and the `History` corpus be `d2`. As you can see, the distance `d2` is smaller than the distance `d1`, which would suggest that the `agriculture` and `History` corpora are more similar than the `Agriculture` and `Food` corpora. **Another common  method for determining the similarity between vectors is computing the cosine of the inner angle.** If  the angle is small, the  cosine  would be close to 1; and as the angleapproaches 90 degrees, the cosine  approaches 0.
