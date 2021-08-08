@@ -37,3 +37,18 @@
     *raw counts* vs *logarithmic scale*
 
  4. *static methon* for javascript & python
+
+ 5. Static Way cs Dinamic Way in Numpy:
+
+ Note that some operations can be performed using static functions like np.sum() or np.mean(), or by using the inner functions of the array.
+
+```
+nparray2 = np.array([[1, 3], [2, 4], [3, 5]]) # Define a 3 x 2 matrix.
+
+mean1 = np.mean(nparray2) # Static way
+mean2 = nparray2.mean()   # Dinamic way
+
+print(mean1, ' == ', mean2)
+```
+
+**Even if they are equivalent, we recommend the use of the static way always.**

@@ -52,3 +52,17 @@ Imagine you have *an extensive corpus of tweets* that can be categorized.
 ## Phrases
 
 1. data visualization gives insight into the expected performance of any model.
+
+## Math
+
+1. Algebraic operators 代数运算符
+
+2. Linear algebra 线性代数
+
+3. Get the **norm** of a matrix 获取矩阵的**范数**
+
+4. The dot product or scalar product or inner product between two vectors $\vec a$ and $\vec b$ of the same size is defined as:
+
+  $$\vec a \cdot \vec b = \sum_{i=1}^{n} a_i b_i$$
+
+  The dot product takes two vectors and returns a single number.
