@@ -192,3 +192,119 @@ Now let's look at the case where the vectors have the same direction. In this ca
 * Cosine Similarity gives values between 0 and 1
 
 Now, you know how to get the cosine similarity between any pair of vectors. An important **takeaway** is that, this metric is **proportional 成比例的** to the similarity between the directions of the vectors that you are comparing. And that for the vector spaces you've seen so far, the cosine similarity takes values between 0 and  1.
+
+## Manipulating Words in Vector Spaces
+
+Specifically by performing some simple *vector arithmetic 矢量算术* meaning by adding vectors and subtracting vectors, you will be able to predict the countries of certain capitals.
+
+### Outline
+
+* How to use vector representations
+
+In this portion, I'll show you how to manipulate vector representations in order to infer unknown relations among words.
+
+### Manipulating word vectors
+
+Suppose that you have a vector space with countries and their capital cities. You know that the capital of `the United States` is `Washington DC` and you don't know the capital of Russia, but you'd like to use the `known relationship` between `Washington DC` and `the USA` to figure it out. For that,  you'll just use  some simple **vector algebra 矢量代数**. 
+
+For this example, you are in in a *hypothetical two-dimensional vector space 假设的二维向量空间* that has different representations for different countries and capital cities.
+
+- **First**, you will have to find the relationship between the `Washington DC` and `USA` vector representations. In other words, which vector connects them? To do that, get the difference begtween the two vectors. The values from that will tell you how many units on each dimension you should move in order to find a country's capital in that vector space. 
+
+- So to find the capital city of Russia, you will have to sum it's vector presentation with the vector that you also got in the last step.
+
+- At the end, you should *deduce 推断/减掉/臆测* that the capital of Russia has a vector representation of `[10, 4]`. However, there are no cities with that representation, so you'll have to take the one that is the most similar to its by comparing each vector with Euclidean distances or Cosine similarities. 
+
+In this case, the vector representation that is closet to the [10, 4] is the one for `Moscow`. Using this simple process, you could have predicted the capital of Russia if you knew the capital of the USA. *The only catch 唯一的问题* here is that you need a vector space where the representations capture the relative meaning of words.
+
+### Summary
+
+* Use known relationships to make predictions
+
+Now you have a simple process to get unknown relationships between words by the use of known relationships between others. You now know the **importance of having vector spaces where the representations of words capture the relative meaning in natural language.**
+
+You have now seen **a clustering of all vectors when plotted  on two axes.** You have also seen that the vectors of the words that occur in similar places in the sentence will be encoded in a similar way. You can take advantage of this type of *consistency encoding 一致性编码* to identify patterns. For example, if you had the word `doctor` and  you were to find the closest words that are closets to it by computing cosine similarity, you might get the word `doctors`, `nurse`, `cardiologist 心脏病专家`, `surgeon 外科医生`, etc. In the next video, you will learn how to plot these d-dimensional vectors on a 2D plane.
+
+## [Visualization and PCA](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/7FUaZ/visualization-and-pca)
+
+It is often the case that you'll end up having vectors in very, very high dimensions. You want to find a way to **reduce the dimension of these vectors to two dimensions** so you can plot it on an XY axis. You will now learn abou *Principal Components Analysis 主成分分析*, which will all you to do so.
+
+### Outline
+
+* Some motivation for visualization
+
+* Principal Component Analysis
+
+You are going to be using Principal Component Analysis(PCA) to visualize vector representations with higher dimensions than the ones that you've seen plotted so far. To get started, I'll give you some intuition on the motivation for visualizing vector presentation of words. And you'll see for yourself what PCA does and how it is used for dimensionality reduction.
+
+### Visualization of word vectors
+
+Imagine you have the following representation for your words in a vector space(url). In this scenario, your vector space dimension is higher than 2. You know that the words `oil` and `gas`, and `city`, and  `town` are related. And you want to see if that relationship is captured by the representaton of your words. So how could you visualize your words in order to see this and other possible relationships? **Dimensionality reductionis** is a perfect choice for this task. When you have a representation of your words in a high dimensional space. You could use an algorithm like PCA to get a representation on a vector space with fewer dimensions. If you want to visualize your data, you can get a reduced representation with three or fewer features. 
+
+### Visualization of word vectors
+
+If you peform Principal Components Analysis on your data and get a two-dimensional representation, you can then plot a visual of your words. In this case, you might find that your initial representation captured the relationship between the words `oil` and `gas`, and `city`, and `town`. Because in your two-dimensional space they appear to be clustered with related words. You can even find other relationships among your words that you didn't expect, which is a fun and useful possibility.
+
+### Principal Component Analysis
+
+Now that you know what PCA can help you achieve, let's go into detail on how it works. For the sake of simplicity, I'll begin with a two-dimensional vector space. Say that you want your data to be represented by one feature instead. Using PCA, **first** you'll find a set of uncorrelated features. **And then** projects your data to a one-dimensional space, trying to retain as much information as possible. As you can see, this process is quite straightforward. Coming up, you'll see for yourself the details of how this algorithm works. Along with how to get uncorrelated features, you'll also project your data for your representation in a lower-dimension while retaining as much information as possible.
+
+### Summary
+
+* Original Space ---> Uncorrelated features ------> Dimension reduction
+
+* Visualization to see words relationships in the vector space
+
+Principal component analysis is an unsupervised learning algorithm which can be used to reduce the dimension of your data. As a result, it allows you to visualize your data. It tries to combine *variances 方差* across features.
+
+PCA is an algorithm used for dimensionality reduction that can find uncorrelated features for your data. It is very helpful for visualizing your data to check if your representation is capturing relationships among words.
+
+## PCA Algorithm
+
+You will now learn about **eigenvalues 特征值** and **eigenvectors 特征向量**, and you will see how you can use them to reduce the dimension of  your features.
+
+### Outline 
+
+* How to get uncorrelated features
+
+* How to reduce dimensions while retaining as much information as possible
+
+First, I'll show you how to get uncorrelated features for your data, and then how to reduce the dimensions of your word representations while trying to keep as much information as possible from your original embedding.
+
+### Principal Component Analysis
+
+To peform dimensionality reduction using PCA, **begain** with your original vector space. **Then** you get uncorrelated features for your data. And **finally**, you project your data to a number of  desired features that retain the most information.
+
+### PCA Algorithm 
+
+* **Eigenvector:** Uncorrelated features for your data
+
+* **Eigenvalue:** the amount of information retained by each feature
+
+You may recall from algebra that matrices have `eigenvectors` and `eigenvalues`. You do not need to remember how to get those right now. But you should keep in mind that in PCA, they are useful, because the **eigenvectors** of the *covariance matirx 协方差矩阵* form your data, they give directions of uncorrelated features. And the **eigenvalues** are the variance of your data sets in each of those new features. So to peform PCA, you will need to  get the *eigenvectors* and *enginvalues* from the *covariance matrix* of your data.
+
+(check the url)
+
+The **first step** is to get a set of uncorrelated features. 
+
+* For this step, you will **mean normalize your data**.
+
+* **Then** get the **covariance matrix 协方差矩阵**
+
+* **Finally** perform a **singular value decomposition 奇异值分解 SVD** to get a set of three matrices. The **first** of those matrices contain the **eigenvector stacked column wise**. And the **second** one has the **eigen values on the diagonal**. The singular vector decomposition is already implemented in many programming libraries.
+
+The **next step** is to project your data to a new set of features(url). You will be using the `eigenvecgtors` and `eigenvalues` in this step. Let's *denote 表示* the eigenvectors with `U`, and eigenvalues with `S`. 
+
+* **First**, you will perform the *dot products* between the matrix containing your **word embedding** and the first and columns of the `U` matrix, where `n` equals the number of dimensions that you want to have at the end. For *visualization*, it's common practice to have two dimensions. 
+
+* **Then** you will get the **Percentage of Retained Variance** retained in the new vector space. As **an important  side note**, your eigenvectors and eigenvalues should be organized according to the eigenvalues in descending order. This condition will ensure that you retainas much information as possible from your original embedding. However, most libraries  order those matrices for you.
+
+### Summary
+
+* Eigenvectors give the direction of uncorrelated feagtures
+
+* Eigenvalues are the variance of the new features
+
+* Dot product gives the projection on uncorrelated features
+
+Wrapping up, `eigenvectors` from the `covariance matrix` of your normalized data give the directions of uncorrelated features. The `eigenvalues` associated with those `eigenvectors` tellyou the variance of your data on those  features. The `dot products` between your *word embeddings* and the *matrix of engenvectors*, will project your data onto a new vector space of  the dimension that you choose.  
