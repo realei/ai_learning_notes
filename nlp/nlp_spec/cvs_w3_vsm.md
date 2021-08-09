@@ -160,3 +160,35 @@ To illustrate how the euclidean distance might be *problematic有问题的*, let
 * Cosine similarity when corpora are different sizes
 
 Now, you're familar with the main intuition between the use of Cosine similarity as a metric to compare the similarity between two *vector representations向量表示*. **Remember** that the main advantage of this metric overthe duclidean distance is that it isn't biased by the size difference between the representations.
+
+## [Cosine Similarity](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/yasAe/cosine-similarity)
+
+### Outline
+
+* How to get the cosine of the angle between two vectors
+
+* Relation of this metric to similarity
+
+In this section, you will get the consine of the inner angle of two vectors. Then I'll show you how the value of the cosine similarity is related to the similarity of the directions of two vectoros.
+
+### Previous definitions
+
+First, you have to recall some definitions from *algebra 代数*. The **norm of a vector** or it's **magnitude** is  written like this(check the url). It's defined tobe the *square root* of the sum of it's elements squared. The **dot product** between two vectors is the sum of the products between their elements in each dimension of the vector space.
+
+### Cosine Similarity
+
+Let's take another look at two of the corpora from the last section. Remember that in this example, you have a vector space where the representation of the corpora is given by the number of occurrences of the words `disease` and `eggs`. The angle between those vector representations is denoted by `beta`. The `Agriculture` corpus is represented by the vector `v`, and the `History` corpus is going to be vector `w`. The **dot products** between those vectors is defined as follows(url). From this equation, you see that the consine of the angle `beta` is equal to the *dot product* between the vectors divided by the product of the two norms. Replacing the actual values from the vector representations should give you this expression(url). In the numerator, you have the product between the occurrences of the words, `disease` and `eggs`. And in the denominator, you have the product between the *norm* of the vector representations of the `Agriculture` and `History` corpora. *Ultimately 最终*, you should get a cosine similarity of 0.87.
+
+### Cosine Similarity
+
+But what does this metric tell you about the similarity of two different vectors? Consider when two vectors are *orthogonal 正交* in the vector spaces that you know so far. It is only possible to have **positive values** for any dimension. So the **maximum angel** between pair of vectors is 90 degrees. In that case, the cosine would be equal to 0(url), and it would mean that the two vectors have **orthogonal directions 正交方向** or that they are **maximally dissimilar**.
+
+Now let's look at the case where the vectors have the same direction. In this case，the angle between them is 0 degrees and the cosine is equal to 1, because cosine of 0 is just 1. As you can see, as the cosine of the angle between two vectors approaches 1, the closer their directions are.
+
+## Summary
+
+* Cosine & Similarity
+
+* Cosine Similarity gives values between 0 and 1
+
+Now, you know how to get the cosine similarity between any pair of vectors. An important **takeaway** is that, this metric is **proportional 成比例的** to the similarity between the directions of the vectors that you are comparing. And that for the vector spaces you've seen so far, the cosine similarity takes values between 0 and  1.
