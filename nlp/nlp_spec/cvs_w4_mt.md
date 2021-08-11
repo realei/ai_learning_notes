@@ -129,3 +129,39 @@ def basic_hash_table(value_1, n_buckets):
 Now let's build a basic hash table in code. Here is a definition of a function that takes in a list of values. You can think of each value as a one-dimensional vector. It also takes in the number of pockets. Define the hash function used in the modulo operator. Then you create the hash table, notice that this is a dictionary comprehension. The key is an integer and the value is an empty list, which you'll use as a bucket for storage. For each word vector, calculate its hash value, then append it to the appropriate list. The hash table that is returned can be seen in the notebook that's goes with this vector. You will see that the hash table is the same as what you saw in the previous slide.
 
 Now let's take another look at this basic hash table. Recall that **your original goal was to put similar word vectors into the same bucket**, but here it doesn't look like numbers that are close to each other are in the same bucket. For instance, 10, 14 and 17 are in different buckets. Ideally, you want to have a hash function that puts similar word vectors in the same bucket like this. To do this you'll need to use what's called **locality sensitive hashing. Locality is another word for location, sensitive is another word for caring. So locality sensitive hashing is a hashing method that's cares very deeply about assigning items based on where they're located in vector space. You'll learn about locality sensitive hashing next.**
+
+## [Locality sensitive hashing](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/ieYM6/locality-sensitive-hashing)
+
+One key method that you will use to reduce the computational cost of finding k-nearest neighbors in high-dimensional spaces is locality-sensitive hashing. In this video, I will teach you what hashes are and where they are used.
+
+### Locality sensitive hashing
+
+To start thinking about locality-sensitive hashing, let's first assume that you're using word vectors with just two dimensions. I'll *depict 描绘* each vector as a circle instead of arrows. So let's say you want to find a way to know that these blue dots are somehow close to each other, and that these gray dots are also related to each other. **First**, divide the space using these dashed lines, which I'll call **planes**. I'll explain why I called them planes in a bit. Notice how the blue plane slices up the space into vectors that are above it or below it. The blue vectors all happen to be on the same side of the blue plane. Similarly, the gray vectors happen to be above the gray plane. It looks like the planes can help us bucket the vectors into subsets based on their location. This is exactly what you want. A hashing function that is sensitive to the location of the items that it's assigning into buckets. You're working your way towards locality-sensitive hashing.
+
+### Planes
+
+Now, let's see **why I'm calling these dashed lines planes.** A plane would be this magenta line into two-dimensional space, and it actually represents all the possible vectors that would be sitting on that plane. In other words, they would be parallel to the plane, such as this blue vector or this orange vector. You can define a plane with a single vector. This magenta vector is *perpendicular 垂直* to the plane, and it's called the **normal vector 法线向量** to that plane. **The normal vector is perpendicular to any vectors that lie on the plane.**
+
+It might help to think about this in **three dimensions**. Find a sheet of paper and find a pencil. Place the paper on the table and draw some vectors on it, then hold the pencil vertically over the paper. Any vectors on the paper are perpendicular to the pencil.
+
+### Which side of the plane?
+
+Let's go back to two dimensions. You are able to see visually when the vector is on one side of the plane or the other, but how do you do this mathematically? Here are three sample vectors in blue, orange, and green. The normal vector to the plane is labeled P. Let's focus on vector 1. What if you take the dot product of P with vector one? You get three. I'll explain in a bit why you're doing this. Now, let's look at the vector 2. If you take the dot product of P with vector 2, you get zero. Finally, let's look at vector 3. If you take the dot product of P with vector 3, you get negative three. So the dot products are 3, 0, and negative 3. **Do you notice something about the signs and how they're related to their position relative to the red plane?** When the dot product is **positive**, the vector is on one side of the plane. If the dot product is **negative**, the vector is on the opposite side of the plane. If the dot product is **zero**, the vector is on the plane. 
+
+### Visualizing a dot product
+
+So what's the dot product doing? To visualize the dot product, imagine one of the vectors such as P, as if it's the surface of the Earth. **Gravity 重力** pulls all objects straight down towards the surface of the Earth. Next, pretend you're standing at the end of the vector, V1. You tie a *string 绳子* to a rock and let gravity pull the rock to the surface of vector P. The string is perpendicular to vector P. Now, if you draw a vector that's in the same direction of P but ends up at the rock, you'll have what's called the **projection 投影** of vector V1 onto vector P. The magnitude or length of that vector is equal to the dot product of V1 and P. Furthermore, if you had this other green vector and projected it onto vector P, the projected vector would be pointing in the parallel but opposite direction of P. The dot product would be a negative number. **This means that the *sign 符号* of the dot product indicates the direction of the projection with respect to the purple normal vector.** So whether the dot product is positive or negative can tell you whether the vector V1 or V2 are on one side of the plane or the other. 
+
+### Which side of the plane?
+
+```
+def side_of_plane(P,v):
+    dotproduct = np.dot(P, v.T)
+	sign_of_dot_product = np.sign(dotproduct)
+	sign_of_dot_product_scalar = np.asscalar(sign_of_dot_product)
+    
+```
+
+Let's use code to check which side of the plane the vector is on. The function side of plane takes in the normal vector P, and the vector v. Use numpy dot to take the dot products. Use numpy.sign to get a plus one if the dot product is positive, minus one if the dot product is negative, or zero if the dot product is zero. I'm using numpy.asscalar. Notice the pronunciation of that function. If a vector can be represented as *a single scalar 单个纯量/标量*, this function *retrieves 提取* that scalar, and that's it. Please try it out for yourself.
+
+
