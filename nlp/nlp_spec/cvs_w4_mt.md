@@ -79,7 +79,7 @@ Now, let's also go into detail on how you can calculate the gradient of the loss
 
 If it looks like this, the scalar m is the number of rows or words in the subset that we're using for training. If you remember from calculus, this may look familiar to you if you pretend that R is a single variable instead of a matrix and X and Y are constants. If you don't recognize this, don't worry, you won't need to know calculus here. You'll be able to look up these derivatives online if you ever need to. Now going back to Y, it helps to use the square of the Frobenius norm. It's easier to take the derivative of this expression rather than dealing with the square root that's in the Frobenius norm. You will implement this formula in the assignment.
 
-## K-Nearest Neighbors
+## [K-Nearest Neighbors](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/avTgO/k-nearest-neighbors)
 
 One key operation needed to find a matching word in the previous video was finding the K-nearest neighbors of a vector. We will focus on this operation in the next few videos as it's a basic building block for many NLP techniques.
 
@@ -94,3 +94,38 @@ To understand how to find similar word vectors, let's look at a related question
 ### Summary
 
 In this video, I showed you how using K-nearest neighbors you could translate a word even if it's transformation doesn't exactly match the word embedding in the desired language. And I introudced you to hash tables, a useful data structure that you will learn about in the next video.
+
+## [Hash Tables and Hash Functions](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/UFnGD/hash-tables-and-hash-functions)
+
+### Hash tables
+
+So let us say you have several data items and you want to group them into buckets by some kind of similarity. One bucket can hold more than one item and each item is always assigned to the same bucket. So the results would be these blue *ovals 椭圆形* and up in bucket number one, these gray *rectangles 长方形*, and up in bucket number two. And these *magenta triangles 洋红色三角形* are assigned to buckets three.
+
+Now let's think about how we'd like to do this with word vectors. **First**, let's assume that the word vectors have just 1 dimension instead the 300 dimensions. So each word is represented by a single number, such as 100, 14 ,17, 10 and 97. You need to find a way to give each vector a hash value which is a key that tells it which bucket it's assigned to. **A function that assigns a hash value is called a hash function.** In this example, here is a hash table which is a set of buckets. In this case, the hash table has ten buckets. Notice how the word vectors 100 and 10 are assigned to bucket 0. The word vector 14 is assigned to buckets 4 and the word vectors 17 and 97 are assigned to bucket 7. Do you notice a pattern?
+
+`Hash function(vector) ------> Hash value`
+
+`Hash value = vector%'number of buckets'`
+
+This formula here is the hash function that's being used to assign the word vectors to their respective buckets. The *modulo operator 模运算符* takes the remainder after dividing by ten. The *remainder 余* is the hash value that tells us where the word vector should be stored. For example, 14 divided by 10 has a remainder of 4, so it goes to buckets 4.
+
+### Create a basic hash table
+
+```
+# Python
+
+def basic_hash_table(value_1, n_buckets):
+    def hash_function(value_1, n_buckets):
+	    return int(value) % n_buckets
+	hash_table = {i:[] for i in range(n_buckets)}
+
+	for value in value_1:
+	    hash_value = hash_function(value, n_buckets)
+		hash_table[hash_value].append(value)
+
+	return hash_table
+```
+
+Now let's build a basic hash table in code. Here is a definition of a function that takes in a list of values. You can think of each value as a one-dimensional vector. It also takes in the number of pockets. Define the hash function used in the modulo operator. Then you create the hash table, notice that this is a dictionary comprehension. The key is an integer and the value is an empty list, which you'll use as a bucket for storage. For each word vector, calculate its hash value, then append it to the appropriate list. The hash table that is returned can be seen in the notebook that's goes with this vector. You will see that the hash table is the same as what you saw in the previous slide.
+
+Now let's take another look at this basic hash table. Recall that **your original goal was to put similar word vectors into the same bucket**, but here it doesn't look like numbers that are close to each other are in the same bucket. For instance, 10, 14 and 17 are in different buckets. Ideally, you want to have a hash function that puts similar word vectors in the same bucket like this. To do this you'll need to use what's called **locality sensitive hashing. Locality is another word for location, sensitive is another word for caring. So locality sensitive hashing is a hashing method that's cares very deeply about assigning items based on where they're located in vector space. You'll learn about locality sensitive hashing next.**
