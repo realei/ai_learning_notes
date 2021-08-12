@@ -164,4 +164,93 @@ def side_of_plane(P,v):
 
 Let's use code to check which side of the plane the vector is on. The function side of plane takes in the normal vector P, and the vector v. Use numpy dot to take the dot products. Use numpy.sign to get a plus one if the dot product is positive, minus one if the dot product is negative, or zero if the dot product is zero. I'm using numpy.asscalar. Notice the pronunciation of that function. If a vector can be represented as *a single scalar 单个纯量/标量*, this function *retrieves 提取* that scalar, and that's it. Please try it out for yourself.
 
+## Multiple Planes
 
+In this section, you will learn about combining information from multiple planes into a single hash value.
+
+### Outline
+
+* `Multiple planes ------>  Dot products ------> Hash values`
+
+In the last video, you saw how by the sign of the dot product between the *normal vector of a plane* and *a vector representing your data*, you could get a relative position relative to that plane. In this lecture, I'm going to show you how to use this information for multiple planes to get a hash value for your data in your vector space.
+
+### Multiple planes
+
+In order to divide your vector space into manageable regions, you'll want to use more than one *plane 平面*. For each plane, you can find out whether a vector is on the positive or negative side of that plane. So you'll get multiple signals, one for each plane and you want to **find a way to combine all of those signals into a single hash value. This hash value will define a particular region within the vector space.**
+
+### Multiple planes, single  hash value
+
+Let's walk through an example. Then you will see the general formula for combining signals from multiple planes. So for a single vector, let's say that it's dot product with plane 1 is 3, so the sign is positive, and the hash value is set to 1 to indicate that the sign is positive(url). For the second plane, the dot product is 5, so the sign is again positive and the hash value is 1. For the third plane, the dot product is -2, so the sign is -1 and the hash value is set to 0 to Iindicate that the vector v is on the negative side of plane 3. To combine these intermediates hash values into a single hash value, you'll do the following. Take 2 to the power of 0 times h1 + 2 to the power of 1 times h2 + 2 to the power of 2 times h3, it gives us a combined hash value of 3. So just as a reminder you have multiple planes and it helps us to divide the vector space into smaller sub regions. But you want to have a single hash value, so you will know which *bucket 存储桶* to assign the vectoring. You do this by combining the signals from all the planes into a single hash value.
+
+**Here are the rules you applied written out**, if the sign of the *dot product 点积* is greater than or equal to 0, assign the *intermediate hash value 中间值* of 1. Otherwise if the dot product is less than 0, assign the intermediate hash value of 0. To combine the intermediate as values, use this formula, **this is how you get locality sensitive hashing**. Let's implement this in code.
+
+`$hash = sum_{i}^{H} 2^{i} x h_{i}$`
+
+```
+def hash_multiple_plane(P_1,v):
+    hash_value = 0
+
+	for i, P in enumerate(P_1):
+	    sign = side_of_plane(P,v)
+		hash_i = 1 if sign >= 0 elso 0
+		hash_value += 2**i*hash_i
+	
+	return hash_value
+```
+
+Given a list of planes and vector, starts with a hash_value of 0, which you'll use to accumulate the sum of intermediate hash values. Then for each plane, you want to calculate the sign of the dot product. Set the intermediate hash_value to 1 if the sign is greater than or equal to 0. I'll set it to 0 then you multiply the intermediate add value by 2 raised to the 8th power and added to the hash_value. Finally, you return the hash_value.
+
+So if you run code in the lecture notes book, you'll get the same results as the example you saw earlier, go ahead and try it out. >> Now you have seen what it means for a hash function to be locality sensitive, and examples of such hash functions. Next, you will see how this is useful for speeding up the k-nearest neighbor computation. Let's go to the next video.
+
+## [Approximate nearest neighbors](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/Rnp5U/approximate-nearest-neighbors)
+
+Good to see you again. In the last video, you learned about locality-sensitive hashing. Now it is time to put all this knowledge to use. You will make an algorithm that computes k-nearest neighbors much faster than *brute search*.
+
+### Random planes
+
+So far, we've seen that a few planes, such as these three, can divide the vector space into regions. But are these planes the best way to divide up the vector space? What if, instead, you divided the vector space like this? In fact, you can't know for sure which sets of planes is the best way to divide up the vector space, so why not create **multiple sets of random planes 多组随机平面**? so that you can divide up the vector space into multiple, independent sets of hash tables. You can think of it like creating multiple copies of the universe, or a *multiverse 多元宇宙*, if you will.  You can make use of all these different sets of random planes in order to help us find a good set of friendly neighborhood vectors, I mean, a set of k-nearest neighbors. 
+
+### Multiple sets of random planes
+
+So back to our multiple sets of random planes. Over here, for instance, let's say you have a vector space, and this magenta dot in the middle represents the transformation of an English word into a French word vector. You are trying to find other French word vectors that may be similar. So maybe one *universe of random planes 随机平面的宇宙* helped us to determine that this magenta vector and these green vectors are all assigned to the same hash bucket. Another entirely different set of random planes helped us determine that these blue vectors are in the same hash bucket as the red vector. A third set of random planes helped us determine that these orange vectors are in the same hash bucket as the magenta vector. **By using multiple sets of random planes for locality-sensitive hashing, you have a more robust way of searching the vector space for a set of vectors that are possible candidates to be nearest neighbors.** This is called **approximate nearest neighbors** because you're not searching the entire vector space, but just a subset of it.
+
+So it's not the absolute k-nearest neighbors, *but it's approximately the k-nearest neighbors*. **You sacrifice some precision in order to gain efficiency in your search.** 
+
+### Make one set of random planes
+
+So let's see how to make **a set of random planes** in code:
+
+```
+num_dimensions = 2 # 300 in assignment
+num_planes = 3 # 10 in assignment
+```
+
+Assuming that your word vectors have two dimensions and you want to generate three random planes. You'll use `numpy.random.normal` to generate a matrix of three rows and two columns, as you see here. You'll create a vector v, and for each random plane, see which side of the plane the vector is on. So you'll find out whether the vector v is on the positive or negative side of each of these three planes. Notice that instead of using a for loop to work on one plane at a time, you can use numpy.dot to do this in one step. Let's call the function. The result is that vector v is on the positive side of each of the three random planes. You've already seen how to combine these intermediate hash values into a single hash value, but please, do check out the lecture notebook to see all the code and to practice this last step.
+
+**As you see, locality-sensitive hashing allows to compute k-nearest neighbors much faster than naive search.** This powerful tool can be used for many tasks related to our vectors, and I will show you how it can be applied to search in the next video.
+
+## [Searching documents](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/supplement/x6aJN/searching-documents)
+
+I will finish this week by showing you how you can use fast k-nearest neighbor to search for pieces of text related to a query in a large collection of documents. You simply create vectors for both and find the nearest neighbors.
+
+### Document representation
+
+To get ready to perform document search, **first, think about how to represent documents as vectors instead of just words as vectors.** Let's say you have this documents composed of three words. `I love learning.`  How can you represent this entire documents as a vector? Well, you can find the word vectors for each individual word. I love learning. Then just add them together, so the sum of all these words vectors becomes a documents vector, where the same dimension as the word vectors, in this case, three-dimensions. You can then apply document search by using k-nearest neighbors.
+
+### Document vectors
+
+Let's go this up, 
+
+* Create a mini dictionary for word embeddings.
+
+* Here's the list of what's contained in the document.
+
+* You're going to initialize the documents embedding as an array of zeros. 
+
+* Now for each word in a document, you'll get the word vector if the word exists in the dictionary else zero.
+
+* You add these all up and return the documents embedding.
+
+Please try it out. 
+
+You learned in this video an example of a very general method that text can be embedded into vector space so that nearest neighbors refer to text with similar meaning. Well, you will learn more advanced ways to embed text. This basic structure will reappear again and again as it's used throughout modern NLP.
