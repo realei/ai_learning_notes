@@ -123,3 +123,52 @@ Then you made a list of all the strings that are n edits away, you filter these 
 Then you calculated the word probabilities for each of these words, you selected the word with the highest probability as the AutoCorrect replacement, and that was it. 
 
 That's a lot to cover, but breaking it down step-by-step gives you a good intuition for how to implement AutoCorrect. This is something that will come in very handy for the assignment, so well done. Also, you now understand edit and edit distance and how they can be used to measure similarity between words. Next, get ready to apply these concepts to building a metric very common in NLP, for measuring similarity between words, strings, and many more.
+
+### [Minimum edit distance](https://www.coursera.org/learn/probabilistic-models-in-nlp/supplement/sYxbc/minimum-edit-distance)
+
+* How  to evaluate similarity between 2 strings?
+
+* Minimum number of edits needed to transform 1 string into the other
+
+* Spelling correction, document similarity, machine translation, DNA sequencing, and more
+
+You have already seen how to build auto correct using edit distance. Let's consider a slightly different problem. What if you're given two words, strings or even whole documents and you wanted to evaluate how similar they are? Minimum edit distance can be used to do this. Given two strings, the minimum edit distance is the lowest number of operations needed to transform one string into the other. It has many applications. In NLP, for example, it could be used in spelling correction, document similarity, and machine translation. It can also be found in computational biology and DNA sequencing.
+
+#### Minimum edit distance
+
+- Edits:
+
+  * Insert (add a letter)      `'to': 'top', 'two'...`
+  * Delete (remove a letter)   `'hat': 'ha', 'at', 'ht'...`
+  * Replace (change 1 letter to another)  `'jaw': 'jar', 'paw',...`
+
+
+
+For calculating minimum edit distance, you will use three types of edits operations. All three operations that you already know, insert, delete, and replace, for example, to turn `play` into `stay`, **what is the minimum number of edits required to make this happen?** To turn `p` into `s`, you replace `p` with an `s`, and to turn `l` into `t`, you replace `l` with a `t`. Both `a` and `a` are the same, so do nothing. It's the same with `y` and `y`. The total number of edits is `2`.
+
+- Example:
+
+    Source: `p l a y`
+
+	Target: `s t a y`
+
+	p -> s: replace
+
+	l -> t: replace
+
+Until this point, you've considered all edits operations to cost the same. That is a cost of one. 
+
+But now you'll consider a different cost for each type of operation. You will use these costs to calculate the edit distance, which now represents the total edits costs. This is what you are trying to minimize. It is simply the sum of costs for the edits that were made. `Inserts` and `deletes` will have a cost of 1 and `replace` has a cost of 2. This *makes intuitive sense* if you think of replacements as it deletes followed by an inserts. 
+
+```
+Edit cost:
+Insert    1
+Delete    1
+Replace   2
+```
+
+`Edit distance = 2 + 2 = 4`
+
+Calculate for this example, you have two replace edits at a cost of two each for a total edit distance of four. This is a relatively simple example, and it was possible to find the minimum edit distance just by looking at it.
+
+But imagine the number of operations between *much longer strings* and *large corpora of texts* or *even DNA strings*. You can try and solve these problems by *brute force*, adding one added distance at a time and enumerating for all possibilities until one string changes to the other. But this could take a very, very long time. In fact, by solving this way, *the computational complexity increases exponentially as each string grows in length*. **A much faster way is by using a tabular approach.** You will implement this next.
