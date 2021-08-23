@@ -173,3 +173,66 @@ Replace   2
 Calculate for this example, you have two replace edits at a cost of two each for a total edit distance of four. This is a relatively simple example, and it was possible to find the minimum edit distance just by looking at it.
 
 But imagine the number of operations between *much longer strings* and *large corpora of texts* or *even DNA strings*. You can try and solve these problems by *brute force*, adding one added distance at a time and enumerating for all possibilities until one string changes to the other. But this could take a very, very long time. In fact, by solving this way, *the computational complexity increases exponentially as each string grows in length*. **A much faster way is by using a tabular approach.** You will implement this next.
+
+## [Minimum edit distance algorithm 1/3](https://www.coursera.org/learn/probabilistic-models-in-nlp/supplement/7IeNU/minimum-edit-distance-algorithm)
+
+Welcome. This week I will teach you **dynamic programming**. We will go through one example, but once you understand that, you'll be able to apply dynamic programming to anything. 
+
+### Minimum edit distance
+
+`Source: play -->  Target: stay`
+
+So you start by laying out the problem like this(check the url), where you have the source word `play` here down the left column, and then the target words to transform into `stay` along the top row here and an empty string placeholder presented by the *hashtag symbol `#`* at the start of each string here. The reason for this will make more sense in the steps ahead. There are also some row and column indices here just to make things a bit easier to follow along.
+
+Now the goal is to fill out this distance matrix D `D[]`, such that the element D(2,3), for example, refers to the minimum edit distance from pl to sta `D[2,3] = pl->sta`, which is the first two letters of the word `play` to the first three letters of the target word `stay`.
+
+`D[2,3] = source[:2] -> target[:3]`
+
+More generally for any element in the matrix by using this formula for the element at row i and column j being i equals 2, and j equals 3 in the example `pl->sta`. 
+
+`D[i,j] = source[:i] -> target[:j]`
+
+
+From the previous few slides(check the url), you know, each D of i, j will be the minimum at the distance between the beginning of the source word to index i, and the beginning of the targets word to index j. 
+
+`Suorce: play  -->  Target: stay`
+
+  `D[]`
+
+  `D[i,j] = source[:i] -> target[:j]`
+
+  `D[m,n] = source --> target`
+
+**So that's for a source of length m and a target of length n, when you get to the bottom right corner, D (m, n), you have the minimum edit distance between the two strings.** You will compute this from the shortest sub-string to the full string, that is starting with the shortest string in the top left corner and working down then to the right. **The intuition is that you can build upon each sub-problem by combining solutions.** For example, finding the minimum edit distance between two letters is easy. Then you increase the problem size one letter at a time, building on what you already know. If this seems confusing at first, don't worry, it is, but it will start to make more sense as you work through the example.
+
+But first, before you get started, recall the cost for each edit.
+
+`Cost: insert:1, delete:1, replace:2`
+
+`1` for insert and delete and `2` for replace. 
+
+1. `# -> #`   --- `0`
+
+So **the first step** is to transform the *source empty string `#`* into the *targets empty string `#`*. The edit distance between the source empty string and the targets empty string is `0`. There is no formula here is just a special case. So far, so good. To change nothing to nothing, you do nothing! Good!
+
+2. `p -> #` --- `delete`  --- `1`
+
+* **Then** you can move on to `P` to *empty string* `#` and you can do this with a delete, edit operation at a cost of `1`. Then *empty string* `#` to `s`, which you can do with an insert at its operation at a cost of `1`. 
+
+3. `p -> s`:
+
+  * `insert + delete: p -> ps -> s: 2`
+
+  * `delete + insert: p -> # -> s: 2`
+
+  * `replace: p -> s: 2`
+
+* Now look at `p` to `s`. There is more than one possible way to make this transformation. **Each possible sequence of edit is known as a path.** 
+
+  - Starting with `p`, you can insert `s` on the end to get `ps`. Then the leads `p` from the beginning to get to `s`. This has a cost of `1` insert and `1` delete at this point. **Notice** that you've already calculated the cost of inserting a letter `s`. It's found in this red box here on top when you calculate how to get from empty string `#` to `s`. So you actually just calculate the cost of deleting the `p` and add it onto the cost that you've stored in the red box above. This is `1 + 1 = 2`. 
+  
+  - The second possible path starting with `p`, you can delete `p` to get hashtag `#` and then insert `s` to get `s`. **Notice again** that you've already calculated the cost of deleting p in this blue box in the left. The blue box is the cost of going from p to hashtag by deleting p. So you can calculate the cost of inserting p and add it to the cost that you've stored in the blue box on the left. This is `1 + 1 = 2`.
+  
+  - The third way is to replace `p` with `s`, so that you go from `p` to `s` in one step at the cost of `2` for replacement. Visually, you can think of going from this green box and jumping directly into the orange box. The green box is the cost of not doing any edit, which is zero. A replacement has a cost of two, so 0 plus 2 equals 2. 
+  
+  - Then you take the minimum of all three of these paths, which is a 2 in this case. Then place that value in the cell, which gives you the **minimum edit distance** from `p` to `s`. So working off what you've already filled out, **you will notice that to fill in a cell, you need to know the cell above to the left and adjacent upper-left, shown in red, blue, and green here. In doing so, you can benefit from some calculations already performed.** Soon, I'll show you how to generalize this in a formula to fill out the rest of the matrix. But first I will show you how to fill out the first column and the first row so that every cell remaining has it's own red, blue, and green cells available as dependencies. This is what's coming up next.
