@@ -109,18 +109,19 @@ Now that you have a list of actual words, you can move on to step four; calculat
 
 4. Calculate word probabilities
 
-The final step is to calculate word probabilities and find the most likely word from the candidates. For example, the word "and" is more common than the word "ant" in any given body of texts, also called a corpus. This is how AutoCorrect knows which word to substitute for the incorrect one. To understand this better, look at this example sentence, `"I am happy because I am learning."` To calculate the probability of a word in the sentence, you need to first calculate the **word frequencies**. To calculate the probability of a word in the sentence, you need to first calculate the word frequencies. In addition, you want to count the total number of words in the body of texts or corpus, normally a corpus would be much larger. Imagine every issue of a certain magazine ever published all of the Harry Potter books, to keep this example as simple as possible, the corpus here is defined as this one sentence. For example, the word "I" appears twice, the word "m" appears twice also, and so on for the rest of the words.
+The final step is to calculate word probabilities and find the most likely word from the candidates. For example, the word "and" is more common than the word "ant" in any given body of texts, also called a corpus. This is how AutoCorrect knows which word to substitute for the incorrect one. To understand this better, look at this example sentence, `"I am happy because I am learning."` To calculate the probability of a word in the sentence, you need to first calculate the **word frequencies**. In addition, you want to count the total number of words in the body of texts or corpus, normally a corpus would be much larger. Imagine every issue of a certain magazine ever published all of the Harry Potter books, to keep this example as simple as possible, the corpus here is defined as this one sentence. For example, the word "I" appears twice, the word "m" appears twice also, and so on for the rest of the words.
+
 **The final step is to calculate word probabilities and find the most likely word from the candidates.** For example, the word "and" is more common than the word "ant" in any given body of texts, also called a corpus. This is how AutoCorrect knows which word to *substitute 替代* for the incorrect one. To understand this better, look at this example sentence, "I am happy because I am learning." The total number of words in this corpus is seven, the probability of any word within the corpus is the number of times the word appears divided by the total number of words. For example, the word "m" appears twice and the size of the corpus is seven. For AutoCorrect, you find the word candidate with the highest probability and choose that word as the replacement, and that's it.
 
 In summary, to implement AutoCorrect, do the following:
 
-You entered a word to correct, for example the misspelled word deah, D-E-A-H, 
+* You entered a word to correct, for example the misspelled word deah, D-E-A-H, 
 
-then you follow the four steps inside the AutoCorrect's model to get its replacement. You identify deah as being misspelled by checking it against known words. 
+* then you follow the four steps inside the AutoCorrect's model to get its replacement. You identify deah as being misspelled by checking it against known words. 
 
-Then you made a list of all the strings that are n edits away, you filter these lists of strings to include only the ones that are actual words in a given dictionary.
+* Then you made a list of all the strings that are n edits away, you filter these lists of strings to include only the ones that are actual words in a given dictionary.
 
-Then you calculated the word probabilities for each of these words, you selected the word with the highest probability as the AutoCorrect replacement, and that was it. 
+* Then you calculated the word probabilities for each of these words, you selected the word with the highest probability as the AutoCorrect replacement, and that was it. 
 
 That's a lot to cover, but breaking it down step-by-step gives you a good intuition for how to implement AutoCorrect. This is something that will come in very handy for the assignment, so well done. Also, you now understand edit and edit distance and how they can be used to measure similarity between words. Next, get ready to apply these concepts to building a metric very common in NLP, for measuring similarity between words, strings, and many more.
 
