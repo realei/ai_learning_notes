@@ -89,7 +89,7 @@ A **replace edit** changes one letter to another, for example the word jaw. Chan
 
 - Given a string find all possible strings that are *n edit distance away* using
 
-  * Input
+  * Insert
   * Delete
   * Switch
   * Replace
