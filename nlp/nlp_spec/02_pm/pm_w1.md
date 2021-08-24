@@ -236,3 +236,93 @@ So **the first step** is to transform the *source empty string `#`* into the *ta
   - The third way is to replace `p` with `s`, so that you go from `p` to `s` in one step at the cost of `2` for replacement. Visually, you can think of going from this green box and jumping directly into the orange box. The green box is the cost of not doing any edit, which is zero. A replacement has a cost of two, so 0 plus 2 equals 2. 
   
   - Then you take the minimum of all three of these paths, which is a 2 in this case. Then place that value in the cell, which gives you the **minimum edit distance** from `p` to `s`. So working off what you've already filled out, **you will notice that to fill in a cell, you need to know the cell above to the left and adjacent upper-left, shown in red, blue, and green here. In doing so, you can benefit from some calculations already performed.** Soon, I'll show you how to generalize this in a formula to fill out the rest of the matrix. But first I will show you how to fill out the first column and the first row so that every cell remaining has it's own red, blue, and green cells available as dependencies. This is what's coming up next.
+
+### [Minimum edit distance 2/3](https://www.coursera.org/learn/probabilistic-models-in-nlp/supplement/3EvOV/minimum-edit-distance-algorithm-ii)
+
+Earlier, you used **an intuitive approach 直观的方法** to fill out the upper left corner of the minimum edit distance table. Now I'll show you how to use **a formulaic approach 公式化的方法** to fill out the rest.
+
+- Minimum edit distance
+
+`Source: play -> Target: stay`
+
+`Cost: insert: 1, delete 1, replace: 2`
+
+  `play -> #`
+
+  `D[i,j] = D[i-1,j] + del_cost`
+
+  ```
+  D[4,0] = play -> #
+     
+	     = source[:4] -> target[0]
+  ```
+
+So you filled out some of the table already, and it looks like this. Now, to fill out the rest of the table, you must first fill out the remaining cells of the leftmost column and top row. In fact, you know that to Transform play into an empty string, you can just delete each letter. So let's try that. You can fill out these cells top-to-bottom by following this formula for each cell. Look at the cell above and add the cost of an extra delete edit, which will be one. This means that to make the string p into the empty string, do on delete operation as shown in the previous example. To turn the string pl into the empty string, delete p and deletes l, which are two deletes operations and so on. Now at `D(4,0)` you have **the minimum edit distance for play to the empty string**, which of course is just the cost of four deletes four. 
+
+  `D[i,j] = D[i,j-1] + ins_cost`
+
+You can use the same idea in the first row by transforming the empty string to stay by inserting one letter at a time. You do that by following this slightly different formula, working from the left to the right, look at the previous cell and add a further inserts costs one.
+
+Looks good so far in the previous example, I showed you how to calculate this cell without formulas. But you can also find the solution by applying this big, scary-looking formula(url). It's builds upon the computation's you've already made in just the same way as using the no formula method. Some of this might feel like it's repeating what you just learned. What it's valuable to see the formulas too, especially when getting ready for the end of week assignment. **So the distance to this orange cell is going to be the minimum distance to reach it from any of the previous three cells.** Interesting, right?
+
+It might seem a little bit abstract at first, but you can break it down into smaller parts. For example, if you come from the cell above, you will add the delete costs just like you did in the first column. If you come from this cell to the left, you will add an inserts costs just like you did in the top row, and if you come from this cell to the upper left, you'll do one of two things either at the replace cost if the two-letter source I and targets J don't match or add nothing if they don't, because there is no edit to be done for letters that's are already the same.
+
+```
+D[i-1,j] + 1 = 2
+
+D[i,j-1] + 1 = 2
+
+D[i-1, j-1] + 2 = 2
+```
+
+* Here for this cell you have the minimum of 1 plus 1, which is 2.
+
+* Another 1 plus 1, which is 2. 
+
+* Since these two letters don't match, you have zero plus 2, which is also 2.
+
+* Then you take the minimum of all three of these, which is a 2 in this case. Place that value in the cell. **This is the minimum edit distance from p to s.** By using the formula and costs defined. 
+
+```
+play -> stay
+
+D[m, n] = 4
+```
+
+You can then fill out the rest of the table the same way, with the (m,n) entry in the bottom right corner being the minimum edit distance from play to stay, which is 4.
+
+Adding color coding or a heatmap reveals some interesting patterns(url). Can you see what's happened from the middle square? That's right. Once you get from pl to st, the *suffix 后缀* of both words is the same a-y so there are no more edits needed. That's why these for carries down the diagonal. Now you know how to build a minimum edit distance algorithm efficiently using a table. Well done. There are a few things worth noting about this style of implementation before you go, I'll show you those next.
+
+### [Minimum edit distance algorithm 3/3](https://www.coursera.org/learn/probabilistic-models-in-nlp/supplement/Fi4mT/minimum-edit-distance-iii)
+
+- Minimum edit distance(url for photo)
+
+`Source: play -> Targete: stay`
+
+`Cost: insert: 1, delete:1, replace:2`
+
+  * Levenshtein distance
+
+  * Backtrace
+
+  * Dynamic programming
+
+A few quick notes on the minimum edit distance implementation you learned.
+
+Measuring the edit distance by using the three edits: inserts, deletes, and replace with costs 1, 1, and 2 respectively is known as **Levenshtein distance 莱文斯坦距离**. That's what you've used here. You can look it up for more details if you like. There are also well-known alternatives that have different edit rules.
+
+Finding the minimum edit distance on its own doesn't always solve the whole problem. You sometimes need to know how you got there too. You do this by **keeping a backtrace which is simply pointer in each cell letting you know where you came from to get there**. So you know the path taken across the table from the top-left corner to the bottom-right corner. This tells you the edits taken and is particularly useful in problems dealing with string alignment. But that's a discussion for another time.
+
+Finally, this tabular method for computation instead of brute force is a technique known as **dynamic programming**. **Intuitively, this just means that solving the smallest subproblem first and then reusing that result to solve the next biggest subproblem. Saving that result, reusing it again and so on.** This is what you did here by solving each cell in order. It's a well-known technique in computer science and will appear again and again in the coming weeks of this course. That's it. This was a long lesson, so well done. 
+
+You should be proud of yourself. You took the problem of solving minimum edit distance and broke it down into parts. Then used the tabular based approach step-by-step for a very efficient implementation. Great work. Now try the programming assignment where you will code up this example with **an optional challenge to build a backtrace tool**. What a journey? You're just getting started here. The weeks ahead are loaded with more exciting stuff. 
+
+* What is autocorrect?
+
+* Building the model
+
+* Minimum edit distance
+
+* Minimum edit distance algoritm
+
+But before you go, a quick recap. In the past few lessons, you learned a lot about some real-world applications of NLP that you're probably using every day. You learned about autocorrect and what it is and how it works its magic. You went step-by-step through how to build a working autoCorrect model using edit distance and work probabilities. You learned about the problem of string similarity and metric of minimum edit distance. Finally, you learned a really cool way to solve minimum edit distance using a tabular algorithmic technique known as dynamic programming. You now have the know-how to practice all these new skills in the week 1 programming assignments. Have fun and good luck. Now you know how to calculate the minimum edit distance using dynamic programming. Next week, you'll use dynamic programming again to assign part of speech tags to words. It's an exciting application which Jones will show you.
