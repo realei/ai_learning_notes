@@ -66,3 +66,9 @@ Imagine you have *an extensive corpus of tweets* that can be categorized.
   $$\vec a \cdot \vec b = \sum_{i=1}^{n} a_i b_i$$
 
   The dot product takes two vectors and returns a single number.
+
+## Cloud
+
+resilient and efficient 有弹性和高效
+
+Google has spent billions of dollars building this platform and making it resilient and efficient.
