@@ -57,7 +57,9 @@ Projects, folders and origination nodes are all places where the policies can be
 
 - **Vocabulary:**
 
-   doable and manageable
+  doable and manageable
+
+  durable 耐用的
 
   tedious and error prone 乏味且容易出错
 
@@ -71,6 +73,8 @@ Projects, folders and origination nodes are all places where the policies can be
   Incognito mode 隐身模式
 - **Terminology**
 
+  glitch 故障 fault, malfunction, error breakdown
+
   LAMP Stack, LAMP stands for Linux, Apache, MySQL, PHP
 
   Google provides client libraries that **take a lot of the drudgery out of the task of calling GCP from your code**.
@@ -78,6 +82,8 @@ Projects, folders and origination nodes are all places where the policies can be
   idioms 习语
 
    a full-fledged operating system 成熟的操作系统
+
+   All data in Cloud Bigtable is encrypted in both **in-flight and at rest 传输中和静态中加密**.
 
 ## Identity and Access Management (IAM)
 
@@ -253,4 +259,64 @@ Multi-regional storage on the other hand, cost a bit more but it's **Geo-redunda
 
   * Fully managed NoSQL, wide-column database service for terabyte applications
 
-Cloud Bigtable is **Google's NoSQL, big data database** service. **What is NoSQL mean?** Well, this isn't a database course, so I'll give you a very informal picture. **Think first of a relational database** as offering you tables in which every row has the same set of columns, and the database engine enforces that rule and other rules you specify for each table. That's called the **database schema**. An enforce schema is a big help for some applications and a huge pain for others. Some applications call for a much more flexible approach. For example, **a NoSQL schema**. In other words, for these applications not all the rows might need to have the same columns. And in fact, the database might be designed to take advantage of that **by sparsely populating the rows 稀疏填充行**. That's part of what makes a NoSQL database what it is. Which brings us to Bigtable. Your databases in Bigtable are sparsely populated tables that can scale to billions of rows and thousands of columns allowing you to store petabytes of data.
+  * Accessed using HBase API
+
+  * Native compatibility with big data, Hadoop ecosystems
+
+Cloud Bigtable is **Google's NoSQL, big data database** service. **What is NoSQL mean?** Well, this isn't a database course, so I'll give you a very informal picture. **Think first of a relational database** as offering you tables in which every row has the same set of columns, and the database engine enforces that rule and other rules you specify for each table. That's called the **database schema**. An enforce schema is a big help for some applications and a huge pain for others. Some applications call for a much more flexible approach. For example, **a NoSQL schema**. In other words, for these applications not all the rows might need to have the same columns. And in fact, the database might be designed to take advantage of that **by sparsely populating the rows 稀疏填充行**. That's part of what makes a NoSQL database what it is. Which brings us to Bigtable. **Your databases in Bigtable are sparsely populated tables that can scale to billions of rows and thousands of columns allowing you to store petabytes of data.**
+
+- Why choose Cloud Bigtable?
+
+  * Scalability: Managed, scalable storage
+
+  * Data encryption in-flight and at rest
+
+  * Control access with IAM
+
+  * Bigtable drives major applications such as Google Analytics and Gmail
+
+## Cloud SQL and Cloud Spanner
+
+- Cloud SQL is a managed RDBMS
+
+  * Offers MySQL and PostgreSQLBeta database as a service
+
+  * Automatic replication
+
+  * Managed backups
+
+  * Vertical scaling (read and write)
+
+  * Horizontal scaling (read)
+
+  * Google security
+
+Remember, these services use a database schema to help your application keep your **data consistent and correct**.
+
+**Another feature of relational database services** that helps with the same goal - **transactions 数据库事务**. Your application can *designate 指定* a group of database changes as all or nothing. Either they all get made, or none do.
+
+- Cloud Spanner is a horizontally scalable RDBMS
+
+  * Strong global consistency
+
+  * Managed instances with high availability
+
+  * SQL queries
+    
+	- ANSI 2011 with extensions
+
+  * Automatic replication
+
+If Cloud SQL does not fit your requirements because you need horizontal scaleability, consider using Cloud Spanner. It offers transactional consistency at a global scale, schemas, SQL, and automatic synchronous replication for high availability. And, it can provide petabytes of capacity. Consider using Cloud Spanner if you have outgrown any relational database, or sharding your databases for throughput high performance, need transactional consistency, global data and strong consistency, or just want to consolidate your database. Natural use cases include, financial applications, and inventory applications.
+
+## Cloud Datastore
+
+- Cloud Datastore is a horizontally scalable NoSQL DB
+
+  * Designed for application backends
+
+We already discussed one GCP NoSQL database service: Cloud Bigtable. Another highly scalable NoSQL database choice for your applications is Cloud Datastore. One of its main use cases is to store structured data from App Engine apps. You can also build solutions that span App Engine and Compute Engine with Cloud Datastore as the integration point. As you would expect from a fully-managed service, Cloud Datastore automatically handles sharding and replication, providing you with a highly available and *durable 耐用的* database that scales automatically to handle load. **Unlike Cloud Bigtable, it also offers transactions that affect multiple database rows, and it lets you do SQL-like queries.** To get you started, Cloud Datastore has a free daily quota that provides storage, reads, writes, deletes and small operations at no charge.
+
+## Comparing Storage Options
+
+- Comparing storage options: technical details
