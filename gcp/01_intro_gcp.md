@@ -247,3 +247,10 @@ Multi-regional storage on the other hand, cost a bit more but it's **Geo-redunda
 
   * Transfer Appliance: Rackable appliances to  securely ship your data
 
+## Cloud Bigtable
+
+- Cloud Bigtable is managed NoSQL
+
+  * Fully managed NoSQL, wide-column database service for terabyte applications
+
+Cloud Bigtable is **Google's NoSQL, big data database** service. **What is NoSQL mean?** Well, this isn't a database course, so I'll give you a very informal picture. **Think first of a relational database** as offering you tables in which every row has the same set of columns, and the database engine enforces that rule and other rules you specify for each table. That's called the **database schema**. An enforce schema is a big help for some applications and a huge pain for others. Some applications call for a much more flexible approach. For example, **a NoSQL schema**. In other words, for these applications not all the rows might need to have the same columns. And in fact, the database might be designed to take advantage of that **by sparsely populating the rows 稀疏填充行**. That's part of what makes a NoSQL database what it is. Which brings us to Bigtable. Your databases in Bigtable are sparsely populated tables that can scale to billions of rows and thousands of columns allowing you to store petabytes of data.
