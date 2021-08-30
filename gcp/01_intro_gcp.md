@@ -196,3 +196,54 @@ One of the most famous Google services that people don't pay for is 8.8.8.8, whi
   * Carrier Peering
 
   * Dedicated Interconnect
+
+## Cloud Storage
+
+- Cloud Storage is binary large-object storage
+
+  * High performance, internet-scale
+
+  * Simple administration
+
+    - Does not require capacity management
+
+**What's object storage?** It's not the same as **file storage**, in which you manage your data as a hierarchy of folders. It's not the same as **block storage**, in which your operating system manages your data as chunks of disk. Instead, **object storage** means **you save to your storage here, you keep this arbitrary bunch of bytes I give you and the storage lets you address it with a unique key.** That's it. Often these unique keys are in the **form of URLs** which means object storage interacts nicely with Web technologies.
+
+Cloud Storage is not a file system because each of your objects in Cloud Storage has a URL.
+
+- Cloud Storage is binary large-object storage
+
+  * Data encryption at rest 静态数据加密
+
+  * Data encryption in transit by default from Google to endpoint (https)
+
+  * Online and offline import services are available
+
+- There are several ways to control access to your objects and buckets:
+
+  * For most purposes, Cloud IAM is sufficient
+
+  * If you need *finer control 更精细的控制*, you can create **access control lists - ACLs** - that offer finer control.
+    - Scope
+	- Permission
+
+- Choosing among Cloud Storage classes
+
+  * Multi-regional  --- high performance object storage
+
+  * Regional  --- high performance object storage
+
+  * Nearline --- backup and archival storage
+
+  * Codeline --- backup and archival storage
+
+Multi-regional storage on the other hand, cost a bit more but it's **Geo-redundant**. That means you pick a broad geographical location like the United States, the European Union, or Asia and cloud storage stores your data in at least two geographic locations separated by at least 160 kilometers.
+
+- There are several ways to bring data into Cloud Storage
+
+  * Online transfer: Self-managed copies using command-line tools or drag-and-drop
+
+  * Storage Transfer Service: Scheduled, managed batch transfers
+
+  * Transfer Appliance: Rackable appliances to  securely ship your data
+
