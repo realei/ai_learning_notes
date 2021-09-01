@@ -320,3 +320,48 @@ We already discussed one GCP NoSQL database service: Cloud Bigtable. Another hig
 ## Comparing Storage Options
 
 - Comparing storage options: technical details
+
+## Containers, Kubernetes, and  Kubernetes Engine
+
+- Introcuction
+
+  * Iaas: Compute Engine, VM
+  * Paas: App Engine
+  * Kubernetes, it is like both Iaas and Paas
+
+- Agenda
+
+  * Introduction to Containers
+  * Kubernetes and Kubernetes Engine 
+  * Lab
+
+- IaaS
+  
+  * VM
+
+- App Engine
+
+- Containers
+
+  Containers are **loosely coupled** to their environments.
+
+  * Docker
+  * Cloud Build, a managed service for building containers
+  
+  * Container Registry service: Google Container Registry
+
+- Kubernetes
+
+Kubernetes makes it easy to **orchestrate many Containers** on many hosts. **Scale** them, **roll out new versions** of them, and even **roll back to the old version** if things go wrong.
+
+## Introduction to Kubernetes and GKE
+
+- Kubernetes: Pod
+
+Whenever Kubernetes deploys a container or a set of related containers, it does so inside an abstraction called a **pod**. **A pod is the smallest deployable unit in Kubernetes**. Think of a pod as if it were a running process on your cluster. **It could be one component of your application or even an entire application.** Think of a pod as if it were a running process on your cluster. It could be one component of your application or even an entire application. It's common to have only one container per pod. But if you have multiple containers with a hard dependency, you can package them into a single pod. They'll automatically **share networking** and they can **have disk storage volumes in common**. Each pod in Kubernetes gets **a unique IP address** and **set of ports** for your containers. Because containers inside a pod can **communicate with each other using the localhost network interface**, they **don't know or care which nodes they're deployed on**.
+
+**So what is a deployment?** A deployment represents a group of replicas of the same pod. It keeps your pods running even if a node on which some of them run on fails. You can use a deployment to contain a component of your application or even the entire application.
+
+**By default, pods in a deployment or only accessible inside your cluster**, but what if you want people on the Internet to be able to access the content in your nginx web server? To make the pods in your deployment publicly available, you can connect **a load balancer** to it by running the kubectl expose command. Kubernetes then creates a **service** with a fixed IP address for your pods. **A service is the fundamental way Kubernetes represents load balancing.** To be specific, you requested Kubernetes to attach an external load balancer with a public IP address to your service so that others outside the cluster can access it. In GKE, this kind of load balancer is created as a network load balancer. This is one of the managed load balancing services that Compute Engine makes available to virtual machines. GKE makes it easy to use it with containers. Any client that hits that IP address will be routed to a pod behind the service.
+
+**So what exactly is a service?** A service groups a set of pods together and provides a stable endpoint for them. In our case, a public IP address managed by a network load balancer, although there are other choices. But **why do you need a service?** Why not just use pods' IP addresses directly? Suppose instead your application consisted of a front end and a back end. Couldn't the front end just access the back end using those pods' internal IP addresses without the need for a service? Yes, but it would be a management problem. As deployments create and destroy pods, pods get their own IP addresses, but those addresses don't remain stable over time. Services provide that stable endpoint you need. As you learn more about Kubernetes, you'll discover other service types that are suitable for internal application back ends.
