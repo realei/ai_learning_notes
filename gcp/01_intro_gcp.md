@@ -365,3 +365,43 @@ Whenever Kubernetes deploys a container or a set of related containers, it does 
 **By default, pods in a deployment or only accessible inside your cluster**, but what if you want people on the Internet to be able to access the content in your nginx web server? To make the pods in your deployment publicly available, you can connect **a load balancer** to it by running the kubectl expose command. Kubernetes then creates a **service** with a fixed IP address for your pods. **A service is the fundamental way Kubernetes represents load balancing.** To be specific, you requested Kubernetes to attach an external load balancer with a public IP address to your service so that others outside the cluster can access it. In GKE, this kind of load balancer is created as a network load balancer. This is one of the managed load balancing services that Compute Engine makes available to virtual machines. GKE makes it easy to use it with containers. Any client that hits that IP address will be routed to a pod behind the service.
 
 **So what exactly is a service?** A service groups a set of pods together and provides a stable endpoint for them. In our case, a public IP address managed by a network load balancer, although there are other choices. But **why do you need a service?** Why not just use pods' IP addresses directly? Suppose instead your application consisted of a front end and a back end. Couldn't the front end just access the back end using those pods' internal IP addresses without the need for a service? Yes, but it would be a management problem. As deployments create and destroy pods, pods get their own IP addresses, but those addresses don't remain stable over time. Services provide that stable endpoint you need. As you learn more about Kubernetes, you'll discover other service types that are suitable for internal application back ends.
+
+What if you need more power? **To scale a deployment, run the kubectl scale command.** Now our deployment has 3 nginx web servers, but they're all behind the service and they're all available through one fixed IP address. You could also use **auto scaling** with all kinds of useful parameters. For example, here's how to auto scale a deployment based on CPU usage. In the command shown, you specify a minimum number of pods, 10, a maximum number of pods, 15, and the criteria for scaling up. In this case, Kubernetes will scale up the number of pods when CPU usage hits 80% of capacity.
+
+So far, I've shown you how to run **imperative commands like expose and scale**. This works well to learn and test Kubernetes step by step, but the **real strength of Kubernetes** comes when you work in a **declarative 声明式** way. Instead of issuing commands, you provide a configuration file that tells Kubernetes what you want your desired state to look like and Kubernetes figures out how to do it. These configuration files then become your management tools. To make a change, edit the file and then present the changed version to Kubernetes. The command on the slide is one way we could get a starting point for one of these files based on the work we've already done. That command's output would look something like this. These files are intimidating the first time you see them because they're long and they contain syntax you don't yet understand. But with a little familiarity, they're easy to work with. And you can save them in a version control system to keep track of the changes you made to your infrastructure.
+
+The last question we will answer is, what happens when you want to update the version of your application? You will definitely want to update your container and get the new code out in front of your users as soon as possible, but it could be risky to roll out all those changes at once. You do not want your users to experience downtime while your application rebuilds and redeploys. That's why one attribute of a deployment is its update strategy. Here's an example, a rolling update. When you choose a **rolling update for a deployment** and then give it a new version of the software that it manages, Kubernetes will create pods of the new version one-by-one, waiting for each new version pod to become available before destroying one of the old version pods. **Rolling updates are a quick way to push out a new version of your application while still sparing your users from experiencing downtime.**
+
+## Introduction to Hybrid and Multi-Cloud Computing(Anthos)
+
+Now that you understand containers, let's take that understanding a step further and talk about using them in a modern hybrid cloud on multi-cloud architecture.
+
+- Distributed systems housed on-premises is the traditional approach but it lacks flexibility and agility
+
+- Distributed systems housed  on-premises are difficult to upgrade
+
+  * Increasing capacity means buying more servers
+
+  * Lead time for  new capacituy would be up to a year or more.
+
+- Modern distributed systems allow a more agile approach to managing your compute resources
+
+  * Move only some of your compute workloads to the Cloud
+
+  * Move at your own pace
+
+  * Take adventage of Cloud's scalability and  lower costs
+
+  * Add specialized services to your compute resources stack
+
+To summarize, it allows you to keep parts of your systems infrastructure on-premises while moving other parts to the Cloud, creating an environment that is uniquely suited to your company's needs. Move only specific workloads to the Cloud at your own pace because a full scale migration is not required for it to work. Take advantage of the flexibility, scalability, and lower computing costs offered by cloud services for running the workloads you decide to migrate. Add specialized services such as machine learning, content caching, data analysis, long-term storage, and IoT to your computing resources tool kit.
+
+- Anthos is Google's modern solution for hybrid and multi-cloud systems and services management
+
+  * Kubernetes and GKE On-Prem create the fundation
+  * On-premises and Cloud Environments stay in sync
+  * A rich set of tools is provided for:
+    - Managing services  on-premises and in the cloud
+	- Monitoring systems and services
+	- Migrating applictions from VMs into your clusters
+	- Maintaining consistent policies across all clusters, whether on-premises or in the Cloud
