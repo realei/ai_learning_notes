@@ -1,14 +1,12 @@
-# Cracking the coding interview
-
-## Big O
+# Big O
 
 Stack space in **recursive** call counts.
 
-### Drop the Constants
+## Drop the Constants
 
 - O(N) = O(2N) = O(3N + 100)
 
-### Drop the Non-Dominant Terms
+## Drop the Non-Dominant Terms
 
 - O(N^{2} + N) becomes O(N^{2})
 
@@ -20,13 +18,13 @@ Comutational cost:
 
 o(x!) > O(2^{x}) > O(x^{2}) > O(x * log x) > O(x) > O(log x)
 
-### Multi-Part Algorithms: Add vs. Multiply
+## Multi-Part Algorithms: Add vs. Multiply
 
 Suppose you have an algorithm that has two steps. When do you multiply the runtimes and when do you add them?
 
 This is a common source of confusion for  candidates.
 
-### Amortized Time 摊销时间
+## Amortized Time 摊销时间
 
 An **Array List**, or a **dynamically resizing array**, allows you to have the benefits of an array while offering flexibility in size. You won't run out of space in the Arraylist since its capacity will grow as you insert elements.
 
@@ -46,7 +44,7 @@ What is the sum of 1 + 2 + 4 + 8 + 16 + ... + X? If you read this sum left to ri
 
 Therefore, X insertions take 0(2X) time. The amortized time for each insertion is 0(1).
 
-### Log N Runtimes
+## Log N Runtimes
 
 We commonly see O(log N) in runtimes. Where does this  come from?
 
@@ -54,6 +52,6 @@ We commonly see O(log N) in runtimes. Where does this  come from?
 
 This is the same reason why finding an element in a balanced binary search tree is O ( log N). With each comparison, we go either left or right. Half the nodes are on each side, so we cut the problem space in half each time.
 
-### Recursive Runtimes 递归运行时
+## Recursive Runtimes 递归运行时
 
 **Try to remember this pattern.** When you have a **recursive function** that makes multiple calls, the runtime will often (but not always) look like **O(branches^{depth})**, where branches is the number of times each recursive call branches. In this case, this gives us O(2^{N}).
