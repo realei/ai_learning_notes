@@ -16,7 +16,7 @@ Stack space in **recursive** call counts.
 
 Comutational cost:
 
-o(x!) > O(2^{x}) > O(x^{2}) > O(x * log x) > O(x) > O(log x)
+O(x!) > O(2^{x}) > O(x^{2}) > O(x * log x) > O(x) > O(log x)
 
 ## Multi-Part Algorithms: Add vs. Multiply
 
