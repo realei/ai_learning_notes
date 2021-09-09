@@ -5,6 +5,10 @@
 
 - Logistic Regression
 
+## Neural Network & Deep Learning
+
+Shallow Neural Network  ---  浅层神经网络
+
 
 ## NLP
 
@@ -24,9 +28,7 @@ So to get started building a *logistic regression classifier* that's capable of 
 
 **Stemming**  词干化
 
-**punctuation marks** 标点符号
-
-## 
+**punctuation marks** 标点符号 
 
 **exclamation point** 感叹号
 
