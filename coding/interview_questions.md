@@ -274,3 +274,43 @@ The two most common ways to search a graph are **depth-first search** and **brea
 In **depth-first search (DFS)**, we start at the root (or another arbitrarily selected node) and explore each branch completely before moving on to the next branch. That is, we go deep first (hence the name depth­first search) before we go wide.
 
 In **breadth-first search (BFS)**, we start at the root (or another arbitrarily selected node) and explore each neighbor before going on to any of their children. That is, we go wide (hence breadth-first search) before we go deep.
+
+Breadth-first search and depth-first search tend to be used in different scenarios. **DFS is often preferred if we want to visit every node in the graph.** Both will work just fine, but depth-first search is a bit simpler.
+
+However, **if we want to find the shortest path (or just any path) between two nodes, BFS is generally better.** Consider representing all the friendships in the entire world in a graph and trying to find a path of friendships between Ash and Vanessa.
+
+**In depth-first search**, we could take a path like `Ash -> Brian -> Car let on -> Davis -> Eric -> Farah -> Gayle -> Harry -> Isabella -> John·-> Kari ...` and then find ourselves very far away. We could go through most of the world without realizing that, in fact, Vanessa is Ash's friend. We will still eventually find the path, but it may take a long time. It also won't find us the shortest path.
+
+**In breadth-first search**, we would stay close to Ash for as long as possible. We might iterate through many of Ash's friends, but we wouldn't go to his more distant connections until absolutely necessary. If Vanessa is Ash's friend, or his friend-of-a-friend, we'll find this out relatively quickly.
+
+- **Depth-First Search(DFS)**
+
+In DFS, we visit a node `a` and then iterate through each of `a`'s neighbors. When visiting a node `b` that is a neighbor of `a`, we visit all of `b`'s neighbors before going on to `a`'s other neighbors. That is, a exhaustively searches `b`'s branch before any of its other neighbors.
+
+**Note** that pre-order and other forms of tree traversal are a form of DFS. The **key difference** is that when implementing this algorithm for a graph, we must check if the node has been visited. If we don't, we risk getting stuck in an infinite loop.
+
+- **Breadth-First Search(BFS)**
+
+BFS is a bit less intuitive, and many interviewees struggle with the implementation unless they are already familiar with it. **The main *tripping point 引爆点* is the (false) assumption that BFS is recursive. It's not. Instead, it uses a queue.**
+
+In BFS, node `a` visits each of `a`'s neighbors before visiting any of their neighbors. You can think of this as searching level by level out from `a`. An iterative solution involving a queue usually works best.
+
+If you are asked to implement BFS, the **key thing** to remember is the use of the queue. The rest of the algorithm flows from this fact.
+
+- **Bidirectional Search**
+
+Bidirectional search is used to find the shortest path between a source and destination node. It operates by essentially running two simultaneous breadth-first searches, one from each node. When their searches *collide 碰撞*, we have found a path.
+
+To see why this is faster, consider a graph where every node has at most `k` adjacent nodes and the shortest path from node `s` to node `t` has length `d`. 
+
+* In traditional breadth-first search, we would search up to k nodes in the first "level" of the search. In the second level, we would search up to k nodes for each of those first k nodes, so k^2 nodes total (thus far). We would do this d times, so that's O(k^d) nodes.
+
+* In bidirectional search, we have two searches that collide after approximately d/2 levels (the midpoint of the path). The search from `s` visits approximately k^(d/2) , as does the search from `t`. That's approximately 2k^(d/2), or 0(k^(d/2)), nodes total.
+
+This might seem like a minor difference, but it's not. It's huge. Recall that `(k^(d/2)) * (k^(d/2)) = k^d`. The bidirectional search is actually faster by a factor of k^(d/2).
+
+Put another way: if our system could only support searching "friend of friend" paths in breadth-first search, it could now likely support "friend of friend of friend of friend" paths. We can support paths that are twice as long.
+
+**Additional Reading**: Topological Sort (pg 632), Dijkstra's Algorithm (pg 633), AVL Trees (pg 637), Red-Black Trees(pg 639).
+
+
