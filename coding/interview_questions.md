@@ -194,7 +194,7 @@ We have two key operations on a min-heap: `insert` and `extract_min`.
 
 When we insert into a min-heap, we always start by inserting the element at the bottom. We insert at the rightmost spot so as to maintain the complete tree property.
 
-Then, we "fix"the tree by swapping the new element with its parent, until we find an appropriate spot for the element. We essentially bubble up the minimum element.
+:q!Then, we "fix"the tree by swapping the new element with its parent, until we find an appropriate spot for the element. We essentially bubble up the minimum element.
 
 This takes `O(log n)` time, where n is the number of nodes in the heap.
 
@@ -227,3 +227,50 @@ How quickly? A trie can check if a string is a valid prefix in 0(K) time, where 
 ```
 
 Many problems involving lists of valid words leverage a trie as an optimization. In situations when we search through the tree on related prefixes repeatedly (e.g., looking up M, then MA, then MAN, then MANY), we might pass around a reference to the current node in the tree. This will allow us to just check if Y is a child of MAN, rather than starting from the root each time.
+
+### Graphs
+
+A tree is actually a type of graph, but not all graphs are trees. Simply put, a tree is a connected graph without cycles.
+
+A graph is simply a collection of nodes with edges between (some of) them.
+
+* Graphs can be either **directed** (like the following graph) or **undirected**. While directed edges are like a one-way street, undirected edges are like a two-way street.
+
+* The graph might consist of multiple isolated subgraphs. If there is a path between every pair of *vertices 顶点(多个)*, it is called a **"connected graph:"**
+
+* The graph can also have cycles (or not). An **"acyclic graph 无环的" is one without cycles**.
+
+- **Adjacency List**
+
+This is the most common way to represent a graph. Every *vertex 顶点* (or node) stores a list of adjacent *vertices 顶点(多个)*. In an undirected graph, an edge like (a, b) would be stored twice: once in a's adjacent vertices and once in b's adjacent vertices.
+
+A simple class definition for a graph node could look essentially the same as a tree node.
+
+```
+class Graph {
+  public Node[] nodes;
+}
+
+class Node {
+  public String name;
+  public Node[] children;
+}
+```
+
+The Graph class is used because, unlike in a tree, you can't necessarily reach all the nodes from a single node.
+
+- **Adjacency Matrices**
+
+An adjacency matrix is an NxN boolean matrix (where N is the number of nodes), where a true value at `matrix[i][j]` indicates an edge from node i to node j. (You can also use an integer matrix with Os and 1s.)
+
+In an undirected graph, an adjacency matrix will be *symmetric 对称的*. In a directed graph, it will not(necessarily) be.
+
+The same graph algorithms that are used on adjacency lists (breadth-first search, etc.) can be performed with adjacency matrices, but they may be somewhat less efficient. In the adjacency list representation, you can easily iterate through the neighbors of a node. In the adjacency matrix representation, you will need to iterate through all the nodes to identify a node's neighbors.
+
+### Graph Search
+
+The two most common ways to search a graph are **depth-first search** and **breadth-first search**.
+
+In **depth-first search (DFS)**, we start at the root (or another arbitrarily selected node) and explore each branch completely before moving on to the next branch. That is, we go deep first (hence the name depth­first search) before we go wide.
+
+In **breadth-first search (BFS)**, we start at the root (or another arbitrarily selected node) and explore each neighbor before going on to any of their children. That is, we go wide (hence breadth-first search) before we go deep.

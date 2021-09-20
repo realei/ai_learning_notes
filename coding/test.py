@@ -10,3 +10,11 @@ class Solution:
                 return True
         
         return False
+
+class Node:
+    def __init__(self,cargo = None, next = None):
+        self.cargo = cargo
+        self.next = next
+    def __str__(self):
+        #测试基本功能，输出字符串
+        return str(self.cargo)
