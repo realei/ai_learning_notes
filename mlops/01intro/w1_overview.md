@@ -127,6 +127,7 @@ In addition to managing these changes to the data, a second set of issues, that 
   * Security and privacy
 
 **To summarize**, deploying a system requires two broad sets of tasks: there is writing the **software** to enable your to deploy the system in production. There is what you need to do to **monitor** the system performance and to continue to maintain it, expecially in the face of concepts drift as well as data drift.
+
 ## Vocabulary
 
 * fall short --- 达不到
