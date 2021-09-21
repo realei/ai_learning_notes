@@ -312,5 +312,3 @@ This might seem like a minor difference, but it's not. It's huge. Recall that `(
 Put another way: if our system could only support searching "friend of friend" paths in breadth-first search, it could now likely support "friend of friend of friend of friend" paths. We can support paths that are twice as long.
 
 **Additional Reading**: Topological Sort (pg 632), Dijkstra's Algorithm (pg 633), AVL Trees (pg 637), Red-Black Trees(pg 639).
-
-
