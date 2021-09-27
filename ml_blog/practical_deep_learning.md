@@ -11,4 +11,4 @@
 
 ## WHat is Machine Learning?
 
-
+![avatar](./what_is_ml.drawio.png)
