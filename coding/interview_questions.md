@@ -166,9 +166,15 @@ Note that perfect trees are rare in interviews and in real life, as a perfect tr
 
 ### Binary Tree Traversal 遍历
 
-- **In-Order Traversal**
+[Tree Traversals in GeekforGeeks](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)
+
+- **In-Order Traversal** 中序遍历
 
 In order traversal means to "visit"(often, print) the left branch, then the cuirrent node, the right branch.
+
+*Leetcode*:
+
+  * #94 [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)
 
 - **Pre-Orcder Traversal**
 
