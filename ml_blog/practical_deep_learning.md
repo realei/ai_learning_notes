@@ -61,7 +61,7 @@ Paper: "Visualizing and Understanding Convolutional Networks", 2013, Phd Student
 
 ![avatar](./blog_materials/visualize_understand_cnn.png) 
 
-![avatar](./blog_materials/dl_l1_l5_visual.png) 
+![avatar](./blog_materials/dl_l1_l5_viaual.png) 
 
 A lot of the **low level features** such as "detecting edges", "detecting curves", "detecting positive objects". Learning from that, from a very large image recognition data set might help your learning algorithm do better in radiology diagnosis. It just learned a log about the structure and nature of how images look like and some of what knowledge will be useful.
 
