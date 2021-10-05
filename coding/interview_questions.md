@@ -318,3 +318,53 @@ This might seem like a minor difference, but it's not. It's huge. Recall that `(
 Put another way: if our system could only support searching "friend of friend" paths in breadth-first search, it could now likely support "friend of friend of friend of friend" paths. We can support paths that are twice as long.
 
 **Additional Reading**: Topological Sort (pg 632), Dijkstra's Algorithm (pg 633), AVL Trees (pg 637), Red-Black Trees(pg 639).
+
+## Recursion and Dynamic Programming
+
+While there are a large number of recursive problems, many follow similar patterns. **A good hint that a problem is recursive is that it can be built off of subproblems.**
+
+When you hear a problem beginning with the following statements, it's often (though not always) a good candidate for recursion: "Design an algorithm to compute the nth .. :; "Write code to list the first n .. :; "Implement a method to compute all..:; and so on.
+
+### How to Approach
+
+**Recursive solutions, by definition, are built off of solutions to subproblems.** Many times, this will mean simply to compute `f(n)` by adding something, removing something, or otherwise changing the solution for `f(n-1)`. In other cases, you might solve the problem for the first half of the data set, then the second half, and then merge those results.
+
+There are many ways you might divide a problem into subproblems. **Three of the most common approaches** to develop an algorithm are **bottom-up, top-down, and half-and-half**.
+
+- **Bottom-Up Approach**
+
+The bottom-up approach is often the most intuitive. We start with knowing how to solve the problem for a simple case, like a list with only one element. Then we figure out how to solve the problem for two elements, then for three elements, and so on. **The key here** is to think about how you can *build* the solution for one case off of the previous case (or multiple previous cases).
+
+- **Top-Down Approach**
+
+The top-down approach can be more complex since it's less *concrete 具体的*. But sometimes, it's the best way to think about the problem.
+
+In these problems, we think about how we can divide the problem for case N into subproblems.
+
+Be careful of overlap between the cases.
+
+- **Half-and-Half Approach**
+
+In addition to top-down and bottom-up approaches, it's often effective to divide the data set in half.
+
+For example, binary search works with a "half-and-half" approach. When we look for an element in a sorted array, we first figure out which half of the array contains the value. Then we recurse and search for it in that half.
+
+Merge sort is also a "half-and-half" approach. We sort each half of the array and then merge together the sorted halves.
+
+### Recursive vs. Iterative Solutions 递归与迭代
+
+**Recursive algorithms can be very space inefficient.** Each recursive call adds a new layer to the stack, which means that if your algorithm recurses to a depth of `n`, it uses at least `O(n)` memory.
+
+For this reason, **it's often better to implement a recursive algorithm iteratively**. All recursive algorithms can be implemented iteratively, although sometimes the code to do so is much more complex. Before diving into recursive code, ask yourself how hard it would be to implement it iteratively, and discuss the tradeoffs with your interviewer.
+
+### Dynamic Programming & Memoization
+
+Although people make a big deal about how scary dynamic programming problems are, there's really no need to be afraid of them. In fact, once you *get the hang of 掌握窍门* them, these can actually be very easy problems.
+
+**Dynamic programming** is mostly just a matter of taking a recursive algorithm and finding the overlapping subproblems (that is, the repeated calls). You then cache those results for future recursive calls.
+
+Alternatively, you can study the pattern of the recursive calls and implement something iterative. You still "cache" previous work.
+
+*A note on terminology*: Some people call top-down dynamic programming "memoization" and only use "dynamic programming" to refer to bottom-up work. We do not make such a distinction here. We call both dynamic programming.
+
+One of the simplest examples of dynamic programming is computing the nth Fibonacci number. A good way to approach such a problem is often to implement it as a normal recursive solution, and then add the caching part.
