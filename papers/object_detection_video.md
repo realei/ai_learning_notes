@@ -87,4 +87,4 @@ The **metric mean Average Precision (mAP)** is extensively used in conventional 
 
 For Video Object Detection, in order to make full use of the video characteristics, different methods are considered to **capture the temporal–spatial relationship**. Some papers have considered the **traditional methods**[29–42]. These papers heavily rely on the manual design leading to the shortcoming of low accuracy and the lack of robustnese to noise sources. **More recently, deep learning solutions have attempted to overcome these shortcomings.** Please see below ppicture:
 
-
+![image](./categories_of_video_object_detection_methods.png)
