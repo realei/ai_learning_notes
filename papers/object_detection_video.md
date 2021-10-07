@@ -87,4 +87,33 @@ The **metric mean Average Precision (mAP)** is extensively used in conventional 
 
 For Video Object Detection, in order to make full use of the video characteristics, different methods are considered to **capture the temporal–spatial relationship**. Some papers have considered the **traditional methods**[29–42]. These papers heavily rely on the manual design leading to the shortcoming of low accuracy and the lack of robustnese to noise sources. **More recently, deep learning solutions have attempted to overcome these shortcomings.** Please see below ppicture:
 
-![image](./categories_of_video_object_detection_methods.png)
+![image](./photos/categories_of_video_object_detection_methods.png)
+
+## Comparision of Video Object Detection Methods
+
+### Comparsion of Video Object Detection Methods
+
+In recent years, the methods based on attention have achieved much success, such as MEGA[25]. Using LSTM for feature propagation and aggregation is becoming a hot research topic and many new methods are being proposed, such as STSN[83] using deformable convolution to align the feature maps. **The latest research is mostly based on attention, LSTM or a combination of methods such as Flow&LSTM[72].**
+
+* Timeline of video object detection methods
+
+![image](./photos/timeline_of_video_object_detection_methods.png)
+
+* Video object detection methods sorted in different groups
+
+![image](./photos/video_object_detection_methods_sorted_in_different_groups.png)
+
+### Comparison among the video object detection methods without post processing
+
+*Note* that the runtime is based on the NVIDIA GPU used in the references: K means K40, XP means Titan XP, X means Titan X, V means Titan V, 1060 means GeForce GTX 1060, 1080 Ti means GeForce GTX 1080 Ti, 2080 Ti means GeForce GTX 2080 Ti.
+
+![image](./photos/table_comparison_among_the_video_object_detection_methods_without_post_processing.png)
+
+### Comparison among the video object detection methods with post processing
+
+
+![image](./photos/table_comparison_among_the_video_object_detection_methods_with_post_processing.png)
+
+Inspired by the **LSTM-based solutions** in natural language processing, LSTM methods are used to incorporate the sequence information. In the LSTM group, Flow&LSTM [72] achieved the **highest accuracy of 75.5%**. Looking Fast and Slow [70] generated **high speed** but with low accuracy. LSTM captures the long-term information with a simple implementation. Since the sigmoid activation of the input and forget gates are rarely completely saturated, a slow state decay and thus loss of long-term dependence is resulted. In other words, it is difficult to retain the complete previous state in the update.
+
+**Attention-based methods** also show the ability to perform video object detection effectively. In the attention-related group, MEGA [25] with ResNeXt-101 as backbone achieved the highest accuracy of 84.1% mAP. As described, it achieved a very high accuracy with a relatively fast speed. Attention-based methods aggregate the features within proposals that are generated. This decreases the computation time. Because of only using the features within the proposals, the performance relies on the effect of RPN to a certain extent. Here, it is rather difficult to utilize more comprehensive information.
