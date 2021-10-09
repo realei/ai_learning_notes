@@ -4,7 +4,7 @@ Aignistic
 
 ## Why I am interested in AI?
 
-The reason I apply for this job is because I am very interested in AI for Health Care.Actually I received my Master degree in a Biomedical Engineering Lab of University of Macau, which mainly about Bioelectricals singal processing. After received my master I first went to a Robotic Lab, to use GPU hardware to accelerate AI & Compute Vision algorithms. However, at then years ago, I decide to join a telecom device company to start my industrial career with cloud, since back to that time Cloud Computing is the most popular cutting edge technology in the entire IT industry, and it was the foundation for the future. 
+The reason I apply for this job is because I am very interested in AI for Health Care.Actually I received my Master degree in a Biomedical Engineering Lab of University of Macau, which mainly about Bioelectricals singal processing. After received my master I first went to a Robotic Lab for my intership, to use GPU hardware to accelerate AI & Compute Vision algorithms during that time I developed a strong interested in AI & High peformance computing. However, after my intership, I decide to join a telecom device company to start my industrial career with cloud, since back to that time Cloud Computing is the most popular cutting edge technology in the entire IT industry, and it was the foundation for the future. 
 
 My recent three years experience is mainly about developing cloud native AI services. Since now Cloud service is quite mature, which you can provision a GPU or TPU just by call a API from AWS or GCP. The fast growing cloud & big data technology, enable many AI research topic from laboratry to industry applications.
 
