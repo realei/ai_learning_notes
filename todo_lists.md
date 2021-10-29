@@ -52,3 +52,9 @@ print(mean1, ' == ', mean2)
 ```
 
 **Even if they are equivalent, we recommend the use of the static way always.**
+
+6. RESTful service 
+  * param
+  * Authorization 
+  * Headers
+  * Body
