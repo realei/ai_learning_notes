@@ -43,3 +43,25 @@ Language interoperability互操作性 can also be achieved exposing an HTTP endp
   Almost every part of Celery can be extended or used on its own, Custom pool implementations, serializers, compression schemes, logging, schedulers, consumers, producers, broker transports, and much more.
 
   Celery 的每个部分几乎都可以自定义扩展和单独使用，例如自定义连接池、序列化方式、压缩方式、日志记录方式、任务调度、生产者、消费者、中间人（Broker）等。
+
+## [Backends and Brokers](https://docs.celeryproject.org/en/stable/getting-started/backends-and-brokers/index.html)
+
+### Broker Instructions
+
+  * Using RabbitMQ
+
+  * Using Redis
+
+  * Using Amazon SQS
+
+As a Broker: RabbitMQ handles larger messages better than Redis, however if many messages are coming in very quickly, scaling can become a concern and Redis or SQS should be considered unless RabbitMQ is running at very large scale.
+
+### Backend
+
+  * SQLAlchemy/Django ORM
+
+  * Memcached
+
+  * Redis
+
+  * RPC(RabbitMQ/AMQP)
