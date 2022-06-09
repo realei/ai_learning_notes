@@ -40,8 +40,8 @@
 
 Basically it is a way of managing state.
 
-`import { useState } from 'react';` _useState_ is what is called a **hook**. A _hook_ allows us to keep track of state as indicated by state part of this.h
-Another thing to note is **hooks always beginwith use**, _useState_, _useEffect_, _useDebugValue_,there is a bunch of them.
+`import { useState } from 'react';` _useState_ is what is called a **hook**. A _hook_ allows us to keep track of state as indicated by state part of this.
+Another thing to note is **hooks always begin with use**, _useState_, _useEffect_, _useDebugValue_,there is a bunch of them.
 
 **Note**: In javascript 'class' is a researsed word, when writing HTML inside .js it need to avoid it.
 use 'className' instead of 'class' for HTML.
