@@ -13,3 +13,7 @@
 * infeasible - feasible
 
 * Heterogeneity异质性: the number of virtual nodes for a server **is proportional to** the server capacity. For example, servers with higher capacity are assigned with more virtual nodes
+
+* Data replication
+
+* Quorum consensus
